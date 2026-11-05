@@ -1,0 +1,25 @@
+# Build products and local runtime outputs
+build/
+build_*/
+devel/
+devel_*/
+install/
+install_*/
+datasets/
+results/
+__pycache__/
+*.py[cod]
+*.bag
+*.bag.active
+*.pcd
+*.ply
+*.lvx
+.env
+.env.*
+# Generated FAST-LIO logs; keep analysis source scripts and guide files
+/baseline_systems/Fast_LIO2_M3DGR/src/fast_lio2/Log/*.txt
+/baseline_systems/Fast_LIO2_M3DGR/src/fast_lio2/Log/*.csv
+/baseline_systems/Fast_LIO2_M3DGR/src/fast_lio2/Log/*.png
+/baseline_systems/Fast_LIO2_M3DGR/src/fast_lio2/Log/*.pdf
+# Upstream SC-PGO sample data and Python cache are not project source
+/baseline_systems/Fast_LIO2_M3DGR/src/SC-PGO/utils/sample_data/

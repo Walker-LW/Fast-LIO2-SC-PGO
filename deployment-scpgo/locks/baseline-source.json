@@ -1,0 +1,8 @@
+{
+  "upstream": "https://github.com/sjtuyinjie/M3DGR",
+  "upstream_commit": "e0cf7d59c9a5a3df515624034698d976abc26549",
+  "source_root": "baseline_systems/Fast_LIO2_M3DGR/src",
+  "author_name": "LW",
+  "author_email": "2865726016@qq.com",
+  "history_policy": "New project-only root commit; original M3DGR history retained locally, not pushed."
+}

@@ -1,0 +1,14 @@
+{
+  "Id": "sha256:fcfce4546a744e9e76b02e79485ac60f40cc54522362cc8ad7654871c98c2f7f",
+  "RepoTags": [
+    "slam-research-fastlio:noetic"
+  ],
+  "RepoDigests": [
+    "slam-research-fastlio@sha256:fcfce4546a744e9e76b02e79485ac60f40cc54522362cc8ad7654871c98c2f7f"
+  ],
+  "Created": "2026-11-01T20:04:49.189474005+08:00",
+  "Size": 4941958745,
+  "entrypoint": [
+    "/entrypoint.sh"
+  ]
+}

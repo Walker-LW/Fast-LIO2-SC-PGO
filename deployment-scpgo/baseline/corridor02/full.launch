@@ -1,0 +1,9 @@
+<launch>
+  <param name="use_sim_time" value="true" />
+  <include file="$(find fast_lio)/launch/mapping_avia.launch">
+    <arg name="rviz" value="false" />
+  </include>
+  <param name="preprocess/blind" type="double" value="1.0" />
+  <param name="publish/path_en" value="true" />
+  <param name="pcd_save/pcd_save_en" value="false" />
+</launch>

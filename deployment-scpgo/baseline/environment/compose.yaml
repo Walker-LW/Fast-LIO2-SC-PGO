@@ -1,0 +1,63 @@
+name: slam-research
+services:
+  fastlio:
+    image: slam-research-fastlio:noetic
+    build:
+      context: ./docker
+      args:
+        BASE_IMAGE: ${BASE_IMAGE:?Base image digest must be set}
+    init: true
+    working_dir: /ws
+    devices:
+      - /dev/dxg:/dev/dxg
+    environment:
+      ROS_LOG_DIR: /results/ros_logs
+      DISPLAY: "${DISPLAY:?请在WSL终端执行Compose}"
+      QT_QPA_PLATFORM: xcb
+      QT_X11_NO_MITSHM: "1"
+      LD_LIBRARY_PATH: /usr/lib/wsl/lib
+      MESA_D3D12_DEFAULT_ADAPTER_NAME: NVIDIA
+    volumes:
+      - type: bind
+        source: ./fast_lio_ws
+        target: /ws
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ./datasets
+        target: /datasets
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ./results
+        target: /results
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ./results/baseline/dynamic01-smoke-001/Log
+        target: /ws/src/M3DGR/baseline_systems/Fast_LIO2_M3DGR/src/fast_lio2/Log
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ./results/baseline/dynamic01-smoke-001/PCD
+        target: /ws/src/M3DGR/baseline_systems/Fast_LIO2_M3DGR/src/fast_lio2/PCD
+        bind:
+          create_host_path: false
+      - type: bind
+        source: /mnt/wslg/.X11-unix
+        target: /tmp/.X11-unix
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: /usr/lib/wsl
+        target: /usr/lib/wsl
+        read_only: true
+        bind:
+          create_host_path: false
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
