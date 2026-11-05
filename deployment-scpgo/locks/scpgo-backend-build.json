@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "backend_executable": "/ws/devel_scpgo/lib/aloam_velodyne/alaserPGO",
+  "backend_sha256": "15c6c0c091ad460946fd4af3aa91450f024d818f00e25341622874ff5b293864",
+  "backend_bytes": 42481144,
+  "image_id": "sha256:f306a0ec73450db1aa499376f84c0aa56d1046069ceb435087bd46b54e7e6db5",
+  "original_artifact_entries_unchanged": 997,
+  "original_frontend_sha256": "607d6fc36c4efeaefbb8d375e23fbe199da8356d014f75fbe8ca802f289773be",
+  "original_images_unchanged": true,
+  "scpgo_source_files_unchanged": 66,
+  "cache": {
+    "CMAKE_HOME_DIRECTORY": "/ws/src",
+    "CATKIN_DEVEL_PREFIX": "/ws/devel_scpgo",
+    "CATKIN_WHITELIST_PACKAGES": "aloam_velodyne",
+    "CMAKE_INSTALL_PREFIX": "/ws/install_scpgo",
+    "CMAKE_BUILD_TYPE": ""
+  },
+  "cpp_standard": "C++17",
+  "backend_libraries_resolved": true,
+  "backend_node_started": false,
+  "experiment_started": false,
+  "runtime": {
+    "backend_package": "/ws/src/M3DGR/baseline_systems/Fast_LIO2_M3DGR/src/SC-PGO",
+    "frontend_package": "/ws/src/M3DGR/baseline_systems/Fast_LIO2_M3DGR/src/fast_lio2",
+    "cmake_prefix_path": [
+      "/ws/devel_scpgo",
+      "/ws/devel",
+      "/opt/ros/noetic"
+    ],
+    "workspace_packages": [
+      "aloam_velodyne",
+      "fast_lio",
+      "imu_transformer",
+      "livox_ros_driver",
+      "rs_to_velodyne"
+    ]
+  },
+  "compiler_flags": "-O3 -Wall -g   -fopenmp -std=gnu++17",
+  "build_type_note": "The upstream package sets CMAKE_BUILD_TYPE=Release in package scope and overrides its flags with -O3 -Wall -g. The top-level cache is empty; actual target flags are recorded above. No NDEBUG flag was added.",
+  "source_commit_at_build": "1aa3dc33de21b4ca8c32ed1e683d471345c463d7",
+  "upstream_scpgo_commit": "10eab538db70678f41aaa24247d16831ca921374",
+  "build_log": "/home/lw/slam-research/results/validation/scpgo-build-20261105-001/build-001.log",
+  "validation_directory": "/home/lw/slam-research/results/validation/scpgo-build-20261105-001/verification-001",
+  "compiler_warnings": [
+    {
+      "file": "include/scancontext/Scancontext.cpp",
+      "line": 36,
+      "message": "control reaches end of non-void function xy2theta",
+      "status": "Recorded; source unchanged in build-only step."
+    },
+    {
+      "file": "src/laserPosegraphOptimization.cpp",
+      "line": 781,
+      "message": "variable unused set but not used",
+      "status": "Recorded; startup directory deletion remains an unresolved integration item. Backend not executed."
+    }
+  ]
+}
