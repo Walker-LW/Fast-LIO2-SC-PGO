@@ -1,0 +1,303 @@
+{
+  "upstream_repository": "https://github.com/gisbi-kim/FAST_LIO_SLAM",
+  "upstream_commit": "10eab538db70678f41aaa24247d16831ca921374",
+  "source_directory": "D:/projects/FAST_LIO_SLAM/SC-PGO",
+  "target_directory": "baseline_systems/Fast_LIO2_M3DGR/src/SC-PGO",
+  "copied_files": 66,
+  "versioned_files": 42,
+  "copy_verification": "All 66 files match the Windows working copy byte-for-byte; existing CRLF checkout preserved. Windows-native Git and WSL Git with core.autocrlf=true both report the source clean.",
+  "excluded_from_git": [
+    "utils/python/__pycache__/pypcdMyUtils.cpython-36.pyc",
+    "utils/sample_data/KAIST03/optimized_poses.txt",
+    "utils/sample_data/KAIST03/times.txt",
+    "utils/sample_data/KAIST03/Scans/000000.pcd",
+    "utils/sample_data/KAIST03/Scans/000001.pcd",
+    "utils/sample_data/KAIST03/Scans/000002.pcd",
+    "utils/sample_data/KAIST03/Scans/000003.pcd",
+    "utils/sample_data/KAIST03/Scans/000004.pcd",
+    "utils/sample_data/KAIST03/Scans/000005.pcd",
+    "utils/sample_data/KAIST03/Scans/000006.pcd",
+    "utils/sample_data/KAIST03/Scans/000007.pcd",
+    "utils/sample_data/KAIST03/Scans/000008.pcd",
+    "utils/sample_data/KAIST03/Scans/000009.pcd",
+    "utils/sample_data/KAIST03/Scans/000010.pcd",
+    "utils/sample_data/KAIST03/Scans/000011.pcd",
+    "utils/sample_data/KAIST03/Scans/000012.pcd",
+    "utils/sample_data/KAIST03/Scans/000013.pcd",
+    "utils/sample_data/KAIST03/Scans/000014.pcd",
+    "utils/sample_data/KAIST03/Scans/000015.pcd",
+    "utils/sample_data/KAIST03/Scans/000016.pcd",
+    "utils/sample_data/KAIST03/Scans/000017.pcd",
+    "utils/sample_data/KAIST03/Scans/000018.pcd",
+    "utils/sample_data/KAIST03/Scans/000019.pcd",
+    "utils/sample_data/KAIST03/Scans/000020.pcd"
+  ],
+  "exclusion_reason": "Upstream sample point-cloud dataset and generated Python cache are kept locally but not published.",
+  "files": {
+    "CMakeLists.txt": {
+      "sha256": "f398b0d619a8d5057bb8da944986b6fa78f14c60035bef949c8d991b2f647d1c",
+      "bytes": 1758
+    },
+    "package.xml": {
+      "sha256": "aff440b8a07930c5de5be76db0da7a1e7dcd608946c641558798750a26872393",
+      "bytes": 1331
+    },
+    "README.md": {
+      "sha256": "42012758c7d2beec1b188a13a53e543e1fc580af268115e43799568356567277",
+      "bytes": 5958
+    },
+    "docker/Dockerfile": {
+      "sha256": "de7a1453bd3f154c6d0e99db445590def6fff698bb1fe142523ddb986dbff65f",
+      "bytes": 1906
+    },
+    "docker/Makefile": {
+      "sha256": "11f33999a8bea2e13f07ac825ef0802108c7a4220623714a92f0d8fbf51f6a27",
+      "bytes": 351
+    },
+    "docker/run.sh": {
+      "sha256": "7e59fa1a6df1d5973e7e716348ecca30d82f28e9899d2f0e4e50382d1a386931",
+      "bytes": 2108
+    },
+    "launch/aloam_mulran.launch": {
+      "sha256": "096eb6ed242269dfc435d3a49ccbc9f75b9aa231fee9209df6f3c5ef071dfaa5",
+      "bytes": 1987
+    },
+    "launch/aloam_velodyne_HDL_32.launch": {
+      "sha256": "df66af526618570a2f65c2ecb06576dd63c2a4bcc6b87e2e2c1664d25f150b1b",
+      "bytes": 1676
+    },
+    "launch/aloam_velodyne_HDL_64.launch": {
+      "sha256": "3c4dbe56039276f7305d7c90f3f2a9163d9e2cb06eae05a17e37ed8e3bef2f21",
+      "bytes": 1707
+    },
+    "launch/aloam_velodyne_VLP_16.launch": {
+      "sha256": "6704fec450dcc8ab9b2d46576f7078bcb77cade92700a3305333dad531c597de",
+      "bytes": 1863
+    },
+    "launch/fastlio_ouster64.launch": {
+      "sha256": "c87b5335c4e3ef12d14b705f4139b6f11166f76903c0a03bf12d62a3d3b08f5c",
+      "bytes": 2025
+    },
+    "launch/kitti_helper.launch": {
+      "sha256": "c38cde483986cc95dcae285a1c5a08df2a73a81db7779384ab4430abd94125fe",
+      "bytes": 520
+    },
+    "picture/anypipe.png": {
+      "sha256": "7c93c8fdf7e43ee4a720bad66b6af05b03b92831885c43df2fedd1de228c199a",
+      "bytes": 72674
+    },
+    "picture/indoor.png": {
+      "sha256": "7d07e95af190085e780f8899c1d70c8ec5f0cb8665f3fdf52c5fe4ee48cf1a73",
+      "bytes": 1278623
+    },
+    "picture/kaist-03-1.png": {
+      "sha256": "8e9edb888e2e572677b5e9a86fa824d79ebf0bb0ecc7fe7ceffc6c2aaade97ea",
+      "bytes": 2273739
+    },
+    "picture/kaist-03-2.png": {
+      "sha256": "fc761e6881233c35955145c06610ced46df59f21c1c020b9f2509d9f0883b347",
+      "bytes": 2352511
+    },
+    "picture/kaist-03-3.png": {
+      "sha256": "c1f4da0f1e26f648d6c5ccbe729cd2e600bfc8e62d9b6930d41f88bf23f419cf",
+      "bytes": 3389784
+    },
+    "picture/kaist-03-4.png": {
+      "sha256": "63c76344222606087ae612a1d76a73612e485d2566fe9a0c1873868326442978",
+      "bytes": 1507520
+    },
+    "picture/kaist-03-5.png": {
+      "sha256": "96adbb54d9e4f698fafb707d4a37e95fc1dbdd45171a570b657c5bd7cb31e4fe",
+      "bytes": 1166578
+    },
+    "picture/kaist-03-merged.png": {
+      "sha256": "ecf2b01d56d323d0b72923dca0a6c7a7297a62fce70260254c5020c5bcc35bb6",
+      "bytes": 988467
+    },
+    "picture/kitti.png": {
+      "sha256": "93ba1c71e69e69eb423f0a4d6fa725b62b79014968c6e55dc5a92e63ccc484da",
+      "bytes": 855977
+    },
+    "picture/kitti05.png": {
+      "sha256": "d8b95245684dc5be923247cd24700c6a437882547e79b2fb3306edb5b2c6c44b",
+      "bytes": 696912
+    },
+    "picture/kitti_gif.gif": {
+      "sha256": "e1fed45440c9c51d6fc2232a391041401d2376b1d39cde482fd43f2830130622",
+      "bytes": 6278025
+    },
+    "picture/riverside01.png": {
+      "sha256": "6810fb00ae47e657693d2f504caeb7f1bc4c9b01a880883593709f5cc49a3535",
+      "bytes": 122738
+    },
+    "picture/scfastlio.png": {
+      "sha256": "e76207f5b24740048510cee6690a29f0134a5bbee0830aa3109e1692b185b228",
+      "bytes": 1437273
+    },
+    "rviz_cfg/aloam_velodyne.rviz": {
+      "sha256": "b6e5bbebaf8fb89bb234ead310589af64c3187c926a5d95c6a33589ecfc5f8a6",
+      "bytes": 17370
+    },
+    "src/kittiHelper.cpp": {
+      "sha256": "1ccd7537fe8ba8d7ef47b95922d20a30f99c10398be978f5940d55206c2553d5",
+      "bytes": 7499
+    },
+    "src/laserMapping.cpp": {
+      "sha256": "20a0eee27e0c0966ac81fb3b499dbd193f34e9f860b069c8a4dfdbf128eab005",
+      "bytes": 37678
+    },
+    "src/laserOdometry.cpp": {
+      "sha256": "da03fef0dfb44481454adf413de028898f3dc1b844ea35dcbe547ef5f3d98ee1",
+      "bytes": 29919
+    },
+    "src/laserPosegraphOptimization.cpp": {
+      "sha256": "1ecce91260cad9153e51df92b794f4f9f1dde3d6d2b273f68a913bee84db6b24",
+      "bytes": 34503
+    },
+    "src/lidarFactor.hpp": {
+      "sha256": "591d2c823b78d9cb7d59b94f42cb88e163b92ad29c8fdb277400597cf3995246",
+      "bytes": 6328
+    },
+    "src/scanRegistration.cpp": {
+      "sha256": "8aac9732ef75280546914d35695fe094c3224c74be453730b790198d0d24136e",
+      "bytes": 19587
+    },
+    "include/aloam_velodyne/common.h": {
+      "sha256": "12985694d56dc56a05207c2c4f1fb96fa80674a354a0730c37ab53026b469ca5",
+      "bytes": 2435
+    },
+    "include/aloam_velodyne/tic_toc.h": {
+      "sha256": "140b24b670658b07be9706a3d321caafcaade00eb578689fefe334ff5705f9ff",
+      "bytes": 1411
+    },
+    "include/scancontext/KDTreeVectorOfVectorsAdaptor.h": {
+      "sha256": "e0c1b6d5315b6d0b66574352033e31813c28f0d38b0ecfd85f5ce1680ef6053f",
+      "bytes": 5565
+    },
+    "include/scancontext/nanoflann.hpp": {
+      "sha256": "cf1612698ce039e1fdcfd205602036e92f15f18035479e24644dd7b200e81b63",
+      "bytes": 75186
+    },
+    "include/scancontext/Scancontext.cpp": {
+      "sha256": "d5b2e8400b8509571cf59b7d34507307a26396606ad6a0c5298b49d61db888d2",
+      "bytes": 15049
+    },
+    "include/scancontext/Scancontext.h": {
+      "sha256": "e8473a68d766fd40c768c83774af3f1cb7f0b1266ca701ed3d233bb6896bc02d",
+      "bytes": 5335
+    },
+    "utils/python/bone_table.npy": {
+      "sha256": "866fee20d643c23d5c066676bba2fb1c18519330a0e59dba3362601669568a9a",
+      "bytes": 24080
+    },
+    "utils/python/jet_table.npy": {
+      "sha256": "3695de4c5e5a1dbd676251a415c320464eca22261bcc1267fd0d9debd6d22834",
+      "bytes": 24080
+    },
+    "utils/python/makeMergedMap.py": {
+      "sha256": "4d7539e82634d4ca4bd81af61366be2ebd09ca5221ec7d98fbd70af129ba282b",
+      "bytes": 5509
+    },
+    "utils/python/pypcdMyUtils.py": {
+      "sha256": "fc1b180f48f75b64f45890607cc7c385cf1f4f6851ad2042e6c99999725f0ca8",
+      "bytes": 1276
+    },
+    "utils/python/__pycache__/pypcdMyUtils.cpython-36.pyc": {
+      "sha256": "2bf8bef1789a3ff3fc466be3f6064be39afba7ea11b98ea90a78a44d7e1d070f",
+      "bytes": 1087
+    },
+    "utils/sample_data/KAIST03/optimized_poses.txt": {
+      "sha256": "af198ff0f3e939e8390c5f835717b716135157804eb5b669c966e12cd4bdf7ed",
+      "bytes": 371077
+    },
+    "utils/sample_data/KAIST03/times.txt": {
+      "sha256": "5ead9fa58e171a95dbc3be2daa6563e3110416b618890fb3cddad5d58d47233d",
+      "bytes": 63214
+    },
+    "utils/sample_data/KAIST03/Scans/000000.pcd": {
+      "sha256": "901c45bb13100133b0a635feb2fb03d8ba63e4147c1296c79a0e1a97ecaa52e2",
+      "bytes": 597712
+    },
+    "utils/sample_data/KAIST03/Scans/000001.pcd": {
+      "sha256": "75fd73be8f0c4edd7e22db1d8543a9aa0557aa2a63d19d992e5d26102d9712b4",
+      "bytes": 595776
+    },
+    "utils/sample_data/KAIST03/Scans/000002.pcd": {
+      "sha256": "c5284151c4d4eb8586b906736dcd80e5eb6707d0fab64d31ca6235b0bee306f2",
+      "bytes": 591520
+    },
+    "utils/sample_data/KAIST03/Scans/000003.pcd": {
+      "sha256": "2ee8b87f7a4fb178ba60b66c1236547afb0c71bb8135d1066feb16f0d51724d8",
+      "bytes": 586400
+    },
+    "utils/sample_data/KAIST03/Scans/000004.pcd": {
+      "sha256": "876be74c1fa6a4614687b9344c36ac0824387d1fab38e0a002182d097c93b501",
+      "bytes": 582000
+    },
+    "utils/sample_data/KAIST03/Scans/000005.pcd": {
+      "sha256": "fe3ffdfa06cb88646a989ff5565cf21b64f0b62c321532253aa7be3e3fc3953f",
+      "bytes": 579712
+    },
+    "utils/sample_data/KAIST03/Scans/000006.pcd": {
+      "sha256": "fbfe779481563b766060933e6d39a23185881124f031fc51d77bb7bce591d880",
+      "bytes": 581392
+    },
+    "utils/sample_data/KAIST03/Scans/000007.pcd": {
+      "sha256": "e5f2c3cabe376d07f2b81acfda57e3317c80aae32325c3d195854dc0a5356d43",
+      "bytes": 582640
+    },
+    "utils/sample_data/KAIST03/Scans/000008.pcd": {
+      "sha256": "276d7e8470a3abbf9cff5b4cd26a893e0c3eac7a665fdb72a09a6ed8353233e0",
+      "bytes": 588800
+    },
+    "utils/sample_data/KAIST03/Scans/000009.pcd": {
+      "sha256": "3e256985a2ac3675a3f69a0c8926f6f55aba4455a011245a1ac8201568f6ae97",
+      "bytes": 589808
+    },
+    "utils/sample_data/KAIST03/Scans/000010.pcd": {
+      "sha256": "bf788edcb3e2a9e611f3e2c7b92c76a51932dfdd1df63244289679478089c3c1",
+      "bytes": 590928
+    },
+    "utils/sample_data/KAIST03/Scans/000011.pcd": {
+      "sha256": "7283d9d901e26133fbfa6010195b982bda7d6441f8cfe15a1299fdd8d4327eb3",
+      "bytes": 590304
+    },
+    "utils/sample_data/KAIST03/Scans/000012.pcd": {
+      "sha256": "d31429a02acaaf05edf4f33772838e767ece785c9ae47b92d1030348dc67bd1b",
+      "bytes": 586624
+    },
+    "utils/sample_data/KAIST03/Scans/000013.pcd": {
+      "sha256": "16e937377fda80d480c7a4ac6410a0dad64e86e263814ad02127ddfef6c43de3",
+      "bytes": 588384
+    },
+    "utils/sample_data/KAIST03/Scans/000014.pcd": {
+      "sha256": "3afbfe8e80d5817d2ff87b1631fba4bb4067a4228632746e990e617655473fcb",
+      "bytes": 584704
+    },
+    "utils/sample_data/KAIST03/Scans/000015.pcd": {
+      "sha256": "a770ffd989e580077b0e1f59ee6dff20caa322db3442213dc6770549409b262e",
+      "bytes": 582672
+    },
+    "utils/sample_data/KAIST03/Scans/000016.pcd": {
+      "sha256": "8db69a873ce3cae369063c8439df82f8c7f37dd92f7167b9c8bd3a30fb7c7cc8",
+      "bytes": 584672
+    },
+    "utils/sample_data/KAIST03/Scans/000017.pcd": {
+      "sha256": "d90f9c9c933a3c0f7d1b51d3e84ea120d18df392c1d94f93892b5d5bb82638d5",
+      "bytes": 585456
+    },
+    "utils/sample_data/KAIST03/Scans/000018.pcd": {
+      "sha256": "df6135247efe6edb8602c74fb60daa0289e5643e3e5e013cd9c9d15692a2d9e3",
+      "bytes": 590160
+    },
+    "utils/sample_data/KAIST03/Scans/000019.pcd": {
+      "sha256": "053c797ad8f974aac3f781a8aa672760c807df5c200d9378db1e3b7273a42f66",
+      "bytes": 592032
+    },
+    "utils/sample_data/KAIST03/Scans/000020.pcd": {
+      "sha256": "b63fdacd46e8b2a192fbcda80225eed63c3679e201fd74c23c2a3308a3b1f0ea",
+      "bytes": 589024
+    }
+  },
+  "integration_status": "Pristine import only. No dependency installation, compilation, runtime adaptation or algorithm changes."
+}
