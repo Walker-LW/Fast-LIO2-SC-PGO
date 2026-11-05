@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "new_image_tag": "slam-research-fastlio-scpgo:noetic-gtsam403-v1",
+  "new_image_id": "sha256:f306a0ec73450db1aa499376f84c0aa56d1046069ceb435087bd46b54e7e6db5",
+  "image_size_bytes": 5593641609,
+  "base_image_id": "sha256:fcfce4546a744e9e76b02e79485ac60f40cc54522362cc8ad7654871c98c2f7f",
+  "base_tags_unchanged": true,
+  "base_layers_preserved": true,
+  "frontend_sha256": "607d6fc36c4efeaefbb8d375e23fbe199da8356d014f75fbe8ca802f289773be",
+  "frontend_runtime_libraries_resolved": true,
+  "dependency_runtime_probe": "PASS: GTSAM ISAM2 two-pose graph; error=2.28881e-16\nPASS: Ceres 1.14.0; OpenCV 4.2.0; cv_bridge image conversion\nPASS: Eigen 3.3.7",
+  "gtsam_commit": "6425000775da29c93719f37dce3f2de38a0064ec",
+  "workspace_backend_compiled": false,
+  "experiment_started": false,
+  "packages": {
+    "libceres-dev": "1.14.0-4ubuntu1.1",
+    "libeigen3-dev": "3.3.7-2",
+    "libopencv-dev": "4.2.0+dfsg-5",
+    "libpcl-dev": "1.10.0+dfsg-5ubuntu1",
+    "ros-noetic-cv-bridge": "1.16.2-1focal.20250519.235655",
+    "ros-noetic-image-transport": "1.12.1-1focal.20250519.235437"
+  },
+  "gtsam_options": {
+    "BUILD_SHARED_LIBS": "ON",
+    "GTSAM_USE_SYSTEM_EIGEN": "ON",
+    "GTSAM_WITH_TBB": "OFF",
+    "GTSAM_WITH_EIGEN_MKL": "OFF",
+    "GTSAM_BUILD_TESTS": "OFF",
+    "GTSAM_BUILD_WRAP": "OFF",
+    "GTSAM_BUILD_UNSTABLE": "OFF",
+    "GTSAM_BUILD_WITH_MARCH_NATIVE": "OFF"
+  },
+  "build_definition_sha256": {
+    "Dockerfile.scpgo": "0c2125a2ed1c2ed8d7290fdc8f8693eed0e20ba1656ddf9e2486cfe3f9db3d59",
+    "entrypoint-scpgo.sh": "5a4fb1db56d7d8538660935f80d9fd8c6db13dfa3c0bc775cfee4c9f4df78743",
+    "probes/dependencies/CMakeLists.txt": "9ddb944e30a507052b4fdee48d760d14c6e026d503c7434425bfbf5b3cc4ba55",
+    "probes/dependencies/main.cpp": "b3cbdc378710d50f8fc0ad48db04ea25aad98cbe4bd00320c57babe30292a5dc"
+  },
+  "validation_directory": "/home/lw/slam-research/results/validation/scpgo-image-20261105-001/verification-002",
+  "image_publication": "Local Docker image only; not pushed to any image registry."
+}

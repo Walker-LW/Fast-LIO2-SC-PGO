@@ -1,0 +1,48 @@
+ARG BASE_IMAGE=slam-research-fastlio:baseline-pre-scpgo-20261105
+FROM ${BASE_IMAGE}
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+ARG GTSAM_COMMIT=6425000775da29c93719f37dce3f2de38a0064ec
+LABEL org.opencontainers.image.title="FAST-LIO2 SC-PGO dependency environment" \
+      slam.base.image="sha256:fcfce4546a744e9e76b02e79485ac60f40cc54522362cc8ad7654871c98c2f7f" \
+      slam.gtsam.commit="6425000775da29c93719f37dce3f2de38a0064ec"
+RUN sed -i 's@http://archive.ubuntu.com/ubuntu@https://archive.ubuntu.com/ubuntu@g; s@http://security.ubuntu.com/ubuntu@https://security.ubuntu.com/ubuntu@g' /etc/apt/sources.list
+RUN --mount=type=cache,id=scpgo-apt-archives,target=/var/cache/apt,sharing=locked \
+    for attempt in 1 2 3; do \
+      apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 update \
+      && apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 install -y --no-install-recommends \
+         libceres-dev libopencv-dev ros-noetic-cv-bridge \
+         libboost-serialization-dev libboost-system-dev libboost-filesystem-dev \
+         libboost-thread-dev libboost-date-time-dev libboost-regex-dev \
+         libboost-timer-dev libboost-chrono-dev libboost-program-options-dev \
+      && break; \
+      if [[ "$attempt" == 3 ]]; then exit 1; fi; sleep 5; \
+    done \
+    && rm -rf /var/lib/apt/lists/*
+RUN --mount=type=bind,source=.build-context/gtsam,target=/tmp/gtsam-src,readonly \
+    test "$(git -c safe.directory=/tmp/gtsam-src -C /tmp/gtsam-src rev-parse HEAD)" = "$GTSAM_COMMIT" \
+    && cmake -S /tmp/gtsam-src -B /tmp/gtsam-build \
+       -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local \
+       -DBUILD_SHARED_LIBS=ON -DGTSAM_USE_SYSTEM_EIGEN=ON \
+       -DGTSAM_WITH_TBB=OFF -DGTSAM_WITH_EIGEN_MKL=OFF \
+       -DGTSAM_WITH_EIGEN_MKL_OPENMP=OFF -DGTSAM_BUILD_WITH_MARCH_NATIVE=OFF \
+       -DGTSAM_BUILD_WITH_CCACHE=OFF -DGTSAM_BUILD_TESTS=OFF \
+       -DGTSAM_BUILD_EXAMPLES_ALWAYS=OFF -DGTSAM_BUILD_TIMING_ALWAYS=OFF \
+       -DGTSAM_BUILD_UNSTABLE=OFF -DGTSAM_BUILD_WRAP=OFF \
+    && cmake --build /tmp/gtsam-build --parallel 2 \
+    && cmake --install /tmp/gtsam-build \
+    && ldconfig \
+    && mkdir -p /opt/scpgo-environment \
+    && printf '%s\n' "$GTSAM_COMMIT" > /opt/scpgo-environment/gtsam-commit.txt \
+    && cp /tmp/gtsam-build/CMakeCache.txt /opt/scpgo-environment/gtsam-cmake-cache.txt \
+    && rm -rf /tmp/gtsam-build
+COPY probes/dependencies /opt/scpgo-dependency-probe
+RUN source /opt/ros/noetic/setup.bash \
+    && cmake -S /opt/scpgo-dependency-probe -B /opt/scpgo-dependency-probe/build -DCMAKE_BUILD_TYPE=Release \
+    && cmake --build /opt/scpgo-dependency-probe/build --parallel 2 \
+    && /opt/scpgo-dependency-probe/build/scpgo_dependency_probe \
+    && dpkg-query -W -f='${binary:Package} ${Version}\n' > /opt/scpgo-environment/dpkg-packages.txt
+COPY entrypoint-scpgo.sh /entrypoint-scpgo.sh
+RUN chmod +x /entrypoint-scpgo.sh
+WORKDIR /ws
+ENTRYPOINT ["/entrypoint-scpgo.sh"]
+CMD ["sleep", "infinity"]

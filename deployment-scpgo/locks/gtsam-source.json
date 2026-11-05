@@ -1,0 +1,12 @@
+{
+  "repository": "https://github.com/borglab/gtsam",
+  "tag": "4.0.3",
+  "commit": "6425000775da29c93719f37dce3f2de38a0064ec",
+  "use_system_eigen": true,
+  "with_tbb": false,
+  "with_mkl": false,
+  "build_tests": false,
+  "build_wrap": false,
+  "build_unstable": false,
+  "parallel_jobs": 2
+}

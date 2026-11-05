@@ -1,0 +1,8 @@
+*
+!Dockerfile.scpgo
+!entrypoint-scpgo.sh
+!probes/
+!probes/**
+!.build-context/
+!.build-context/gtsam/
+!.build-context/gtsam/**
