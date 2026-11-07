@@ -267,6 +267,7 @@ void SCManager::setSCdistThres(double _new_thres)
 void SCManager::setMaximumRadius(double _max_r)
 {
     PC_MAX_RADIUS = _max_r;
+    PC_UNIT_RINGGAP = PC_MAX_RADIUS / PC_NUM_RING;
 } // SCManager::setMaximumRadius
 
 std::pair<int, float> SCManager::detectLoopClosureIDBetweenSession (std::vector<float>& _curr_key, Eigen::MatrixXd& _curr_desc)
@@ -283,7 +284,7 @@ std::pair<int, float> SCManager::detectLoopClosureIDBetweenSession (std::vector<
         polarcontext_invkeys_to_search_.assign( polarcontext_invkeys_mat_.begin(), polarcontext_invkeys_mat_.end() ) ;
 
         polarcontext_tree_batch_.reset(); 
-        polarcontext_tree_batch_ = std::make_unique<InvKeyTree>(PC_NUM_RING /* dim */, polarcontext_invkeys_to_search_, 10 /* max leaf */ );
+        polarcontext_tree_batch_ = std::make_unique<InvKeyTree>(PC_NUM_RING /* dim */, polarcontext_invkeys_to_search_, TREE_LEAF_SIZE /* max leaf */ );
 
         is_tree_batch_made = true; // for running this block only once
     }
@@ -358,7 +359,7 @@ std::pair<int, float> SCManager::detectLoopClosureID ( void )
         polarcontext_invkeys_to_search_.assign( polarcontext_invkeys_mat_.begin(), polarcontext_invkeys_mat_.end() - NUM_EXCLUDE_RECENT ) ;
 
         polarcontext_tree_.reset(); 
-        polarcontext_tree_ = std::make_unique<InvKeyTree>(PC_NUM_RING /* dim */, polarcontext_invkeys_to_search_, 10 /* max leaf */ );
+        polarcontext_tree_ = std::make_unique<InvKeyTree>(PC_NUM_RING /* dim */, polarcontext_invkeys_to_search_, TREE_LEAF_SIZE /* max leaf */ );
         // tree_ptr_->index->buildIndex(); // inernally called in the constructor of InvKeyTree (for detail, refer the nanoflann and KDtreeVectorOfVectorsAdaptor)
         t_tree_construction.toc("Tree construction");
     }

@@ -56,6 +56,8 @@
 #include "aloam_velodyne/tic_toc.h"
 
 #include "scancontext/Scancontext.h"
+#include "aloam_velodyne/BackendParameters.h"
+BackendParameters backendParameters;
 
 using namespace gtsam;
 
@@ -214,27 +216,27 @@ void gpsHandler(const sensor_msgs::NavSatFix::ConstPtr &_gps)
 void initNoises( void )
 {
     gtsam::Vector priorNoiseVector6(6);
-    priorNoiseVector6 << 1e-12, 1e-12, 1e-12, 1e-12, 1e-12, 1e-12;
+    priorNoiseVector6.setConstant(backendParameters.prior_variance);
     priorNoise = noiseModel::Diagonal::Variances(priorNoiseVector6);
 
     gtsam::Vector odomNoiseVector6(6);
     // odomNoiseVector6 << 1e-4, 1e-4, 1e-4, 1e-4, 1e-4, 1e-4;
-    odomNoiseVector6 << 1e-6, 1e-6, 1e-6, 1e-4, 1e-4, 1e-4;
+    odomNoiseVector6 << backendParameters.odom_rotation_variance, backendParameters.odom_rotation_variance, backendParameters.odom_rotation_variance, backendParameters.odom_translation_variance, backendParameters.odom_translation_variance, backendParameters.odom_translation_variance;
     odomNoise = noiseModel::Diagonal::Variances(odomNoiseVector6);
 
-    double loopNoiseScore = 0.5; // constant is ok...
+    double loopNoiseScore = backendParameters.loop_variance; // constant is ok...
     gtsam::Vector robustNoiseVector6(6); // gtsam::Pose3 factor has 6 elements (6D)
     robustNoiseVector6 << loopNoiseScore, loopNoiseScore, loopNoiseScore, loopNoiseScore, loopNoiseScore, loopNoiseScore;
     robustLoopNoise = gtsam::noiseModel::Robust::Create(
-                    gtsam::noiseModel::mEstimator::Cauchy::Create(1), // optional: replacing Cauchy by DCS or GemanMcClure is okay but Cauchy is empirically good.
+                    gtsam::noiseModel::mEstimator::Cauchy::Create(backendParameters.loop_cauchy_scale), // optional: replacing Cauchy by DCS or GemanMcClure is okay but Cauchy is empirically good.
                     gtsam::noiseModel::Diagonal::Variances(robustNoiseVector6) );
 
-    double bigNoiseTolerentToXY = 1000000000.0; // 1e9
-    double gpsAltitudeNoiseScore = 250.0; // if height is misaligned after loop clsosing, use this value bigger
+    double bigNoiseTolerentToXY = backendParameters.gps_xy_variance; // 1e9
+    double gpsAltitudeNoiseScore = backendParameters.gps_z_variance; // if height is misaligned after loop clsosing, use this value bigger
     gtsam::Vector robustNoiseVector3(3); // gps factor has 3 elements (xyz)
     robustNoiseVector3 << bigNoiseTolerentToXY, bigNoiseTolerentToXY, gpsAltitudeNoiseScore; // means only caring altitude here. (because LOAM-like-methods tends to be asymptotically flyging)
     robustGPSNoise = gtsam::noiseModel::Robust::Create(
-                    gtsam::noiseModel::mEstimator::Cauchy::Create(1), // optional: replacing Cauchy by DCS or GemanMcClure is okay but Cauchy is empirically good.
+                    gtsam::noiseModel::mEstimator::Cauchy::Create(backendParameters.gps_cauchy_scale), // optional: replacing Cauchy by DCS or GemanMcClure is okay but Cauchy is empirically good.
                     gtsam::noiseModel::Diagonal::Variances(robustNoiseVector3) );
 
 } // initNoises
@@ -386,7 +388,7 @@ pcl::PointCloud<PointType>::Ptr transformPointCloud(pcl::PointCloud<PointType>::
                                     transformIn.translation().x(), transformIn.translation().y(), transformIn.translation().z(), 
                                     transformIn.rotation().roll(), transformIn.rotation().pitch(), transformIn.rotation().yaw() );
     
-    int numberOfCores = 8; // TODO move to yaml 
+    int numberOfCores = backendParameters.transform_threads; // TODO move to yaml 
     #pragma omp parallel for num_threads(numberOfCores)
     for (int i = 0; i < cloudSize; ++i)
     {
@@ -427,7 +429,7 @@ void loopFindNearKeyframesCloud( pcl::PointCloud<PointType>::Ptr& nearKeyframes,
 std::optional<gtsam::Pose3> doICPVirtualRelative( int _loop_kf_idx, int _curr_kf_idx )
 {
     // parse pointclouds
-    int historyKeyframeSearchNum = 25; // enough. ex. [-25, 25] covers submap length of 50x1 = 50m if every kf gap is 1m
+    int historyKeyframeSearchNum = backendParameters.icp_submap_half_frames; // enough. ex. [-25, 25] covers submap length of 50x1 = 50m if every kf gap is 1m
     pcl::PointCloud<PointType>::Ptr cureKeyframeCloud(new pcl::PointCloud<PointType>());
     pcl::PointCloud<PointType>::Ptr targetKeyframeCloud(new pcl::PointCloud<PointType>());
     loopFindNearKeyframesCloud(cureKeyframeCloud, _curr_kf_idx, 0, _loop_kf_idx); // use same root of loop kf idx 
@@ -446,11 +448,11 @@ std::optional<gtsam::Pose3> doICPVirtualRelative( int _loop_kf_idx, int _curr_kf
 
     // ICP Settings
     pcl::IterativeClosestPoint<PointType, PointType> icp;
-    icp.setMaxCorrespondenceDistance(150); // giseop , use a value can cover 2*historyKeyframeSearchNum range in meter 
-    icp.setMaximumIterations(100);
-    icp.setTransformationEpsilon(1e-6);
-    icp.setEuclideanFitnessEpsilon(1e-6);
-    icp.setRANSACIterations(0);
+    icp.setMaxCorrespondenceDistance(backendParameters.icp_max_correspondence_distance); // giseop , use a value can cover 2*historyKeyframeSearchNum range in meter 
+    icp.setMaximumIterations(backendParameters.icp_max_iterations);
+    icp.setTransformationEpsilon(backendParameters.icp_transformation_epsilon);
+    icp.setEuclideanFitnessEpsilon(backendParameters.icp_fitness_epsilon);
+    icp.setRANSACIterations(backendParameters.icp_ransac_iterations);
 
     // Align pointclouds
     icp.setInputSource(cureKeyframeCloud);
@@ -458,7 +460,7 @@ std::optional<gtsam::Pose3> doICPVirtualRelative( int _loop_kf_idx, int _curr_kf
     pcl::PointCloud<PointType>::Ptr unused_result(new pcl::PointCloud<PointType>());
     icp.align(*unused_result);
  
-    float loopFitnessScoreThreshold = 0.3; // user parameter but fixed low value is safe. 
+    float loopFitnessScoreThreshold = backendParameters.icp_fitness_threshold; // user parameter but fixed low value is safe. 
     if (icp.hasConverged() == false || icp.getFitnessScore() > loopFitnessScoreThreshold) {
         std::cout << "[SC loop] ICP fitness test failed (" << icp.getFitnessScore() << " > " << loopFitnessScoreThreshold << "). Reject this SC loop." << std::endl;
         return std::nullopt;
@@ -613,7 +615,7 @@ void process_pg()
                 }
                 mtxPosegraph.unlock();
 
-                if(curr_node_idx % 100 == 0)
+                if(curr_node_idx % backendParameters.pose_log_interval == 0)
                     cout << "posegraph odom node " << curr_node_idx << " added." << endl;
             }
             // if want to print the current graph, use gtSAMgraph.print("\nFactor Graph:\n");
@@ -629,7 +631,7 @@ void process_pg()
         // pub path and point cloud in another thread
 
         // wait (must required for running the while loop)
-        std::chrono::milliseconds dura(2);
+        std::chrono::milliseconds dura(backendParameters.worker_sleep_ms);
         std::this_thread::sleep_for(dura);
     }
 } // process_pg
@@ -655,7 +657,7 @@ void performSCLoopClosure(void)
 
 void process_lcd(void)
 {
-    float loopClosureFrequency = 1.0; // can change 
+    float loopClosureFrequency = backendParameters.loop_frequency; // can change 
     ros::Rate rate(loopClosureFrequency);
     while (ros::ok())
     {
@@ -671,7 +673,7 @@ void process_icp(void)
     {
 		while ( !scLoopICPBuf.empty() )
         {
-            if( scLoopICPBuf.size() > 30 ) {
+            if( scLoopICPBuf.size() > size_t(backendParameters.icp_backlog_warning) ) {
                 ROS_WARN("Too many loop clousre candidates to be ICPed is waiting ... Do process_lcd less frequently (adjust loopClosureFrequency)");
             }
 
@@ -693,14 +695,14 @@ void process_icp(void)
         }
 
         // wait (must required for running the while loop)
-        std::chrono::milliseconds dura(2);
+        std::chrono::milliseconds dura(backendParameters.worker_sleep_ms);
         std::this_thread::sleep_for(dura);
     }
 } // process_icp
 
 void process_viz_path(void)
 {
-    float hz = 10.0; 
+    float hz = backendParameters.path_frequency; 
     ros::Rate rate(hz);
     while (ros::ok()) {
         rate.sleep();
@@ -712,7 +714,7 @@ void process_viz_path(void)
 
 void process_isam(void)
 {
-    float hz = 1; 
+    float hz = backendParameters.isam_frequency; 
     ros::Rate rate(hz);
     while (ros::ok()) {
         rate.sleep();
@@ -730,7 +732,7 @@ void process_isam(void)
 
 void pubMap(void)
 {
-    int SKIP_FRAMES = 2; // sparse map visulalization to save computations 
+    int SKIP_FRAMES = backendParameters.map_skip_frames; // sparse map visulalization to save computations 
     int counter = 0;
 
     laserCloudMapPGO->clear();
@@ -756,7 +758,7 @@ void pubMap(void)
 
 void process_viz_map(void)
 {
-    float vizmapFrequency = 0.1; // 0.1 means run onces every 10s
+    float vizmapFrequency = backendParameters.map_frequency; // 0.1 means run onces every 10s
     ros::Rate rate(vizmapFrequency);
     while (ros::ok()) {
         rate.sleep();
@@ -771,6 +773,31 @@ int main(int argc, char **argv)
 {
 	ros::init(argc, argv, "laserPGO");
 	ros::NodeHandle nh;
+
+    try {
+        backendParameters.load(nh);
+        double meter, degree, threshold, radius, viz;
+        nh.param<double>("keyframe_meter_gap", meter, 2.0);
+        nh.param<double>("keyframe_deg_gap", degree, 10.0);
+        nh.param<double>("sc_dist_thres", threshold, 0.2);
+        nh.param<double>("sc_max_radius", radius, 80.0);
+        nh.param<double>("mapviz_filter_size", viz, 0.4);
+        if (!std::isfinite(meter) || meter <= 0 || !std::isfinite(degree) || degree <= 0 ||
+            !std::isfinite(threshold) || threshold <= 0 || threshold > 2 ||
+            !std::isfinite(radius) || radius <= 0 || !std::isfinite(viz) || viz <= 0)
+            throw std::invalid_argument("Invalid keyframe/SC/map visualization parameter");
+        scManager.configure(backendParameters.sc_lidar_height, backendParameters.sc_num_rings,
+            backendParameters.sc_num_sectors, backendParameters.sc_exclude_recent,
+            backendParameters.sc_candidates, backendParameters.sc_tree_period,
+            backendParameters.sc_search_ratio, backendParameters.sc_tree_leaf_size);
+        scManager.setMaximumRadius(radius);
+        scManager.setSCdistThres(threshold);
+        ROS_INFO_STREAM("effective profile: keyframe_meter_gap=" << meter << " keyframe_deg_gap=" << degree
+            << " sc_dist_thres=" << threshold << " sc_max_radius=" << radius << " mapviz_filter_size=" << viz);
+        bool validateOnly = false;
+        nh.param<bool>("validate_config_only", validateOnly, false);
+        if (validateOnly) { ROS_INFO("Configuration valid; no output files or worker threads created."); return 0; }
+    } catch (const std::exception& e) { ROS_FATAL_STREAM(e.what()); return 2; }
 
 	nh.param<std::string>("save_directory", save_directory, "/"); // pose assignment every k m move 
     pgKITTIformat = save_directory + "optimized_poses.txt";
@@ -789,33 +816,33 @@ int main(int argc, char **argv)
 	nh.param<double>("sc_max_radius", scMaximumRadius, 80.0); // 80 is recommended for outdoor, and lower (ex, 20, 40) values are recommended for indoor 
 
     ISAM2Params parameters;
-    parameters.relinearizeThreshold = 0.01;
-    parameters.relinearizeSkip = 1;
+    parameters.relinearizeThreshold = backendParameters.isam_relinearize_threshold;
+    parameters.relinearizeSkip = backendParameters.isam_relinearize_skip;
     isam = new ISAM2(parameters);
     initNoises();
 
     scManager.setSCdistThres(scDistThres);
     scManager.setMaximumRadius(scMaximumRadius);
 
-    float filter_size = 0.4; 
-    downSizeFilterScancontext.setLeafSize(filter_size, filter_size, filter_size);
-    downSizeFilterICP.setLeafSize(filter_size, filter_size, filter_size);
+    // Independent filter scales, preserving the original defaults. 
+    downSizeFilterScancontext.setLeafSize(backendParameters.sc_voxel_size, backendParameters.sc_voxel_size, backendParameters.sc_voxel_size);
+    downSizeFilterICP.setLeafSize(backendParameters.icp_voxel_size, backendParameters.icp_voxel_size, backendParameters.icp_voxel_size);
 
     double mapVizFilterSize;
 	nh.param<double>("mapviz_filter_size", mapVizFilterSize, 0.4); // pose assignment every k frames 
     downSizeFilterMapPGO.setLeafSize(mapVizFilterSize, mapVizFilterSize, mapVizFilterSize);
 
-	ros::Subscriber subLaserCloudFullRes = nh.subscribe<sensor_msgs::PointCloud2>("/velodyne_cloud_registered_local", 100, laserCloudFullResHandler);
-	ros::Subscriber subLaserOdometry = nh.subscribe<nav_msgs::Odometry>("/aft_mapped_to_init", 100, laserOdometryHandler);
-	ros::Subscriber subGPS = nh.subscribe<sensor_msgs::NavSatFix>("/gps/fix", 100, gpsHandler);
+	ros::Subscriber subLaserCloudFullRes = nh.subscribe<sensor_msgs::PointCloud2>("/velodyne_cloud_registered_local", backendParameters.subscriber_queue_size, laserCloudFullResHandler);
+	ros::Subscriber subLaserOdometry = nh.subscribe<nav_msgs::Odometry>("/aft_mapped_to_init", backendParameters.subscriber_queue_size, laserOdometryHandler);
+	ros::Subscriber subGPS = nh.subscribe<sensor_msgs::NavSatFix>("/gps/fix", backendParameters.subscriber_queue_size, gpsHandler);
 
-	pubOdomAftPGO = nh.advertise<nav_msgs::Odometry>("/aft_pgo_odom", 100);
-	pubOdomRepubVerifier = nh.advertise<nav_msgs::Odometry>("/repub_odom", 100);
-	pubPathAftPGO = nh.advertise<nav_msgs::Path>("/aft_pgo_path", 100);
-	pubMapAftPGO = nh.advertise<sensor_msgs::PointCloud2>("/aft_pgo_map", 100);
+	pubOdomAftPGO = nh.advertise<nav_msgs::Odometry>("/aft_pgo_odom", backendParameters.publisher_queue_size);
+	pubOdomRepubVerifier = nh.advertise<nav_msgs::Odometry>("/repub_odom", backendParameters.publisher_queue_size);
+	pubPathAftPGO = nh.advertise<nav_msgs::Path>("/aft_pgo_path", backendParameters.publisher_queue_size);
+	pubMapAftPGO = nh.advertise<sensor_msgs::PointCloud2>("/aft_pgo_map", backendParameters.publisher_queue_size);
 
-	pubLoopScanLocal = nh.advertise<sensor_msgs::PointCloud2>("/loop_scan_local", 100);
-	pubLoopSubmapLocal = nh.advertise<sensor_msgs::PointCloud2>("/loop_submap_local", 100);
+	pubLoopScanLocal = nh.advertise<sensor_msgs::PointCloud2>("/loop_scan_local", backendParameters.publisher_queue_size);
+	pubLoopSubmapLocal = nh.advertise<sensor_msgs::PointCloud2>("/loop_submap_local", backendParameters.publisher_queue_size);
 
 	std::thread posegraph_slam {process_pg}; // pose graph construction
 	std::thread lc_detection {process_lcd}; // loop closure detection 
