@@ -66,6 +66,9 @@ def complete():
         assert observed['counts'].get(key) == expected[topic], (key, observed['counts'], expected)
     assert observed['counts'].get('odom', 0) == observed['counts'].get('body') == observed['exact_stamp_pairs'] > 1
     assert not observed['errors'] and observed['odom_without_body'] == observed['body_without_odom'] == 0
+    last_output=observed['last']['body']['stamp_ns']
+    assert observed['last']['lidar']['stamp_ns'] <= last_output <= observed['last']['imu']['stamp_ns'], \
+        'Frontend output has not reached the final raw scan time window. Keep clock running and inspect; do not stop early.'
     write('input-complete.json', dict(observer=observed, input_topic_counts=expected, checked_wall_time_ns=time.time_ns(),
         tail_since_last_imu_wall_s=time.monotonic()-observed['last']['imu']['wall_monotonic'],
         limit='External input receipts and frontend pairing, not per-input internal processing proof.'))

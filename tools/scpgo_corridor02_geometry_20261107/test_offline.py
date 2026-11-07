@@ -3,6 +3,7 @@ from pathlib import Path
 import json
 import sys
 import tempfile
+import time
 import numpy as np
 import rosbag
 import rospy
@@ -12,6 +13,7 @@ from sensor_msgs.msg import PointCloud2, PointField
 sys.path.insert(0, '/ws/src/M3DGR/deployment-scpgo/runtime')
 import export_keyframe_maps
 import analyze
+import runtime
 
 with tempfile.TemporaryDirectory(prefix='corridor02-synthetic-') as directory:
     run=Path(directory)
@@ -31,7 +33,21 @@ with tempfile.TemporaryDirectory(prefix='corridor02-synthetic-') as directory:
             cloud.fields=[PointField(n,j*4,7,1) for j,n in enumerate(['x','y','z','intensity'])]
             bag.write('/Odometry',odom,t);bag.write('/cloud_registered_body',cloud,t)
     (run/'checks/closed.json').write_text(json.dumps({'saved_files_changed_at_stop':[]}))
-    (run/'checks/input-complete.json').write_text(json.dumps({'observer':{'exact_stamp_pairs':2}}))
+    observed={'counts':{'lidar':2,'imu':10,'odom':2,'body':2},'exact_stamp_pairs':2,'errors':{},
+              'odom_without_body':0,'body_without_odom':0,'first_stamp_ns':{'lidar':999900000000},
+              'last':{'lidar':{'stamp_ns':1000900000000},'imu':{'stamp_ns':1001002000000,'wall_monotonic':time.monotonic()},
+                      'body':{'stamp_ns':1000800000000}}}
+    (run/'config').mkdir()
+    (run/'config/input-info.yaml').write_text('topics:\n- topic: /livox/avia/lidar\n  messages: 2\n- topic: /livox/avia/imu\n  messages: 10\n')
+    (run/'checks/interface-observer.jsonl').write_text(json.dumps(observed)+'\n')
+    runtime.RUN=run
+    try:runtime.complete()
+    except AssertionError:pass
+    else:raise AssertionError('Lagging frontend must not pass input-complete check')
+    assert not (run/'checks/input-complete.json').exists()
+    observed['last']['body']['stamp_ns']=1001000000000
+    (run/'checks/interface-observer.jsonl').write_text(json.dumps(observed)+'\n')
+    runtime.complete()
     (run/'checks/frontend-console.log').write_text('No Effective Points\n')
     (run/'checks/backend-console.log').write_text('Loop detected! - between 0 and 1\n[SC loop] ICP fitness test passed (0.02 < 0.3). Add this SC loop.\n')
     sys.argv=['export',str(run),str(run/'derived/keyframe-maps')]
@@ -47,4 +63,4 @@ with tempfile.TemporaryDirectory(prefix='corridor02-synthetic-') as directory:
     try:analyze.main(run)
     except AssertionError:pass
     else:raise AssertionError('Analysis must refuse overwrite')
-print('SYNTHETIC_CAPTURE_EXPORT_REPORT_AND_NO_OVERWRITE_PASS')
+print('SYNTHETIC_END_COVERAGE_CAPTURE_EXPORT_REPORT_AND_NO_OVERWRITE_PASS')
