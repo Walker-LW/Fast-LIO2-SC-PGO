@@ -7,18 +7,18 @@
   "files": [
     {
       "path": "FAST-LIO2迭代记录与会话交接.md",
-      "sha256": "3bd5991e0fd36a78a0e3ed5d31180d87976aafeb72ed934d471e2c5636352088",
-      "bytes": 11590
+      "sha256": "72177217db1792c7a53bebebb3391313a111879d056dc751ee85de14e6af3bb6",
+      "bytes": 12271
     },
     {
       "path": "FAST-LIO2问题处理与改进复盘.md",
-      "sha256": "bff89e455241f0f00e61d340b330009ea82db58a46c831638c82a26c622a2e6b",
-      "bytes": 104103
+      "sha256": "7ae47e0b75e010dfb976e0fd6051ad809029696ccd5a71e56298dac6d3c6bc1a",
+      "bytes": 106203
     },
     {
       "path": "FAST-LIO2研究路线与进度.md",
-      "sha256": "5526271ce25982674834f7d5eb5a11ca4e712835a9d7d81c6f12dbd7aae51720",
-      "bytes": 28998
+      "sha256": "43ec68f253609e3e708c2eab754e4b1b988ac15a5464d94be49e028886c80875",
+      "bytes": 29458
     },
     {
       "path": "tools/scpgo_runtime/README.md",
@@ -502,8 +502,8 @@
     },
     {
       "path": "tools/scpgo_geometry_effect_audit_20261107/NEXT_STEPS.md",
-      "sha256": "c6098398ada3e987e2efffa95879800b5b1db5276f787c9d96abda40b2d596f1",
-      "bytes": 4694
+      "sha256": "4fdee7929a86714db66a06f7bc384254f54fbb0fd1f4a0d504f480e749b03384",
+      "bytes": 5067
     },
     {
       "path": "tools/scpgo_geometry_effect_audit_20261107/README.md",
@@ -699,11 +699,47 @@
       "path": "tools/corridor02_full/watch.py",
       "sha256": "fd31784b4dfe32e7336a293cca8382452bbe8bb4fd467043eaad3e4db7ec7747",
       "bytes": 1936
+    },
+    {
+      "path": "tools/scpgo_corridor02_geometry_20261107/analyze.py",
+      "sha256": "3e59d9873f15c776fbc905402dba94653247c8851675314229d9a4e9ac19ef40",
+      "bytes": 13345
+    },
+    {
+      "path": "tools/scpgo_corridor02_geometry_20261107/manage.py",
+      "sha256": "73991e4324146fbd4a1100a28c987ddb8bc55870cf4618937bdb1d5497ffb8a1",
+      "bytes": 9304
+    },
+    {
+      "path": "tools/scpgo_corridor02_geometry_20261107/README.md",
+      "sha256": "4056db19171d9c9dde65ca77e474b7555924db36fe9ed17fa8a7b9c17ae081a3",
+      "bytes": 9486
+    },
+    {
+      "path": "tools/scpgo_corridor02_geometry_20261107/run.sh",
+      "sha256": "e647ad424052ad64e40c7c2b0a974865414badcc4a93499aa3948dae611e804e",
+      "bytes": 4654
+    },
+    {
+      "path": "tools/scpgo_corridor02_geometry_20261107/runtime.py",
+      "sha256": "4433ca4740f94c9c4d9b36da7b41c4430d35439c4b7566e6bb8b56382e82d719",
+      "bytes": 4490
+    },
+    {
+      "path": "tools/scpgo_corridor02_geometry_20261107/test_offline.py",
+      "sha256": "0f6e5da3976e94bdc68eff9d4e8a94872dee9e3545252e9cb35dbe0f286aeb14",
+      "bytes": 3235
+    },
+    {
+      "path": "tools/scpgo_corridor02_geometry_20261107/validate_static.py",
+      "sha256": "1dedd2f2b8933601f11a873efe60515166c461018f3f131716104528f594b03a",
+      "bytes": 2697
     }
   ],
   "limits": [
     "Selected source and authored notes only. Raw data, point clouds, binary outputs, detailed result JSON/CSV and preview images remain local.",
     "Historical tool scripts retain their recorded absolute paths and run IDs; they are not fresh generic launchers.",
     "CRLF and inherited whitespace in tested C++ are retained to preserve the exact tested source bytes."
-  ]
+  ],
+  "latest_addition": "Manual raw Corridor02 full rerun with fixed approved thresholds and descriptive quantitative outputs; not yet run on real data."
 }
