@@ -23,3 +23,9 @@ __pycache__/
 /baseline_systems/Fast_LIO2_M3DGR/src/fast_lio2/Log/*.pdf
 # Upstream SC-PGO sample data and Python cache are not project source
 /baseline_systems/Fast_LIO2_M3DGR/src/SC-PGO/utils/sample_data/
+
+# Local research evidence remains outside source control
+/tools/**/verified/
+/tools/**/*.png
+/tools/**/*.csv
+/tools/**/*.log

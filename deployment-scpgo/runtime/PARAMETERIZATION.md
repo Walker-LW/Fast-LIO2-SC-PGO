@@ -1,5 +1,8 @@
 # Corridor01 后端参数化（2026-11-06）
 
+> 当前状态补充（2026-11-07）：下文说明参数化当时的范围；之后另有几何修正提交e96b9f7及已完成的old/fixed整图对照，未见可辨认收拢。生产数值仍与批准配置一致。
+
+
 用户授权的五项配置保存在 [corridor01-indoor.yaml](corridor01-indoor.yaml)：半径40m、关键帧1m/10°、SC阈值0.2、显示体素0.2m。其它38项保持导入版本默认值，列于同一YAML及parameter-defaults.json。参数仅在启动时读取，使用`/scpgo`命名空间；修改YAML后需重新启动新后端，不支持运行中热更新。
 
 实际源码位于WSL `/home/lw/slam-research/fast_lio_ws/src/M3DGR/baseline_systems/Fast_LIO2_M3DGR/src/SC-PGO`。新增`include/aloam_velodyne/BackendParameters.h`；修改主CPP与Scancontext.h/.cpp。新增参数覆盖独立SC/ICP体素、子图帧范围、ICP对应距离/迭代/停止/RANSAC/接受值、SC高度/维度/排除/候选/重建/检索、图噪声及鲁棒核尺度、iSAM、频率、队列与线程。分环角度与宽度随维度和半径重新计算。

@@ -1,0 +1,709 @@
+{
+  "date": "2026-11-07",
+  "timezone": "Asia/Shanghai",
+  "source_root": "/mnt/d/projects/fast-lio2-learning",
+  "parameterization_commit": "a2ae9e1cefbf0c3684de5fc8fffd6f14986486ac",
+  "geometry_commit": "e96b9f70ce5c86915c56dc9d3a0c43c223e4f717",
+  "files": [
+    {
+      "path": "FAST-LIO2迭代记录与会话交接.md",
+      "sha256": "3bd5991e0fd36a78a0e3ed5d31180d87976aafeb72ed934d471e2c5636352088",
+      "bytes": 11590
+    },
+    {
+      "path": "FAST-LIO2问题处理与改进复盘.md",
+      "sha256": "bff89e455241f0f00e61d340b330009ea82db58a46c831638c82a26c622a2e6b",
+      "bytes": 104103
+    },
+    {
+      "path": "FAST-LIO2研究路线与进度.md",
+      "sha256": "5526271ce25982674834f7d5eb5a11ca4e712835a9d7d81c6f12dbd7aae51720",
+      "bytes": 28998
+    },
+    {
+      "path": "tools/scpgo_runtime/README.md",
+      "sha256": "edc5973e545b3920499e42da929b6d6eed59f62f941cb162886b589995a08186",
+      "bytes": 10481
+    },
+    {
+      "path": "tools/scpgo_runtime/audit_completed_run.py",
+      "sha256": "7ccc696ca4bb959e2147b68de838d5517ef6dea61ea903eb54860b004bdf3143",
+      "bytes": 6683
+    },
+    {
+      "path": "tools/scpgo_runtime/audit_environment.py",
+      "sha256": "bfe695aee6ebc83dd6760014526ca8b5c18772fdf936b81698442885c9ccc254",
+      "bytes": 2729
+    },
+    {
+      "path": "tools/scpgo_runtime/backend-defaults.yaml",
+      "sha256": "f851304fdd6efae74e59b39ab5dd3b09825c56b75d81edd5fa8a1587fd873367",
+      "bytes": 233
+    },
+    {
+      "path": "tools/scpgo_runtime/backend.launch",
+      "sha256": "b39cf7fe33cb56a0df42827510160eac523080b83ae06967452d869d1c2630b9",
+      "bytes": 536
+    },
+    {
+      "path": "tools/scpgo_runtime/build_icp_evidence_probe.sh",
+      "sha256": "afd3c5e119735a2c9549b8405f510128c1a28b538f1e4586a6d3c5a87331450a",
+      "bytes": 359
+    },
+    {
+      "path": "tools/scpgo_runtime/diagnose_node_lookup.py",
+      "sha256": "f61dc18e554e8d2ebde0cac4ef7937b5f10f978a7e1898b98415f4083213475a",
+      "bytes": 2663
+    },
+    {
+      "path": "tools/scpgo_runtime/effective-parameters.md",
+      "sha256": "a62f22f2a6800252d2a9fbf7207b316c32fe0de3e4e6cddc7f776e6fa71f0e05",
+      "bytes": 5809
+    },
+    {
+      "path": "tools/scpgo_runtime/export_keyframe_maps.py",
+      "sha256": "2985527932442602a3faba2251ee60183526abe6f1905e9f75c4ebdc46203c4d",
+      "bytes": 5982
+    },
+    {
+      "path": "tools/scpgo_runtime/guard.py",
+      "sha256": "16738fbcd53235adbbac2e7afd4d4150facc5f2c8a99e8362442ca7087088f37",
+      "bytes": 2202
+    },
+    {
+      "path": "tools/scpgo_runtime/icp_evidence_probe.cpp",
+      "sha256": "e851c95e042ee3ca8dd8903b24a1086bbfcc9d836f0db2244a02a6e900bc029e",
+      "bytes": 1450
+    },
+    {
+      "path": "tools/scpgo_runtime/inspect_corridor_input.py",
+      "sha256": "ccccdebe1e064bb8f8b96244fe79c35296dfb4683d9ca1cd762c1dd7ab8ddbd6",
+      "bytes": 4346
+    },
+    {
+      "path": "tools/scpgo_runtime/inspect_corridor_overlap.py",
+      "sha256": "f6cc7f6b9363fff13d70770c424a86d279f8bad0d2889cd7b925edd2ffc7fe6d",
+      "bytes": 2965
+    },
+    {
+      "path": "tools/scpgo_runtime/manual_play.sh",
+      "sha256": "366d761a0118ad9acda92556bf243e149bba30a2073eb0a69ef8d8c1bd6b9198",
+      "bytes": 2026
+    },
+    {
+      "path": "tools/scpgo_runtime/prepare.py",
+      "sha256": "c12a29ee525f83e2bd3d99610559d7095aa61ad4bc98e678d43ac92c09d61046",
+      "bytes": 9379
+    },
+    {
+      "path": "tools/scpgo_runtime/prepare_effect_diagnosis.py",
+      "sha256": "3c5cb2dac458959073307b373f00c1fbcd8c1bfb54dd230660a52cd4eaa049f4",
+      "bytes": 4649
+    },
+    {
+      "path": "tools/scpgo_runtime/radius_coverage_audit_20261106.py",
+      "sha256": "0d9559470a58121046e8bfc3a43e23de9a80d260cb875fd937f58bd32c237c0f",
+      "bytes": 1971
+    },
+    {
+      "path": "tools/scpgo_runtime/ready.py",
+      "sha256": "5fa04ba981955ab6ca5f80fa0cdfa368c4d9ece31892e0aff2768835361da1dd",
+      "bytes": 2135
+    },
+    {
+      "path": "tools/scpgo_runtime/research_audit_20261106.py",
+      "sha256": "c634c54e0fcec247e33c7b55ae55649705445e1aa571993e093521f1aeb32fcb",
+      "bytes": 6460
+    },
+    {
+      "path": "tools/scpgo_runtime/retry_frontend_lookup.sh",
+      "sha256": "035d1dd83b2a21bc27984ba952e13c2576674064274f6466bbc585c810f41276",
+      "bytes": 1991
+    },
+    {
+      "path": "tools/scpgo_runtime/run.sh",
+      "sha256": "78c6ef24e3c66300c9844c6ce26936f7e7b51580d9360283f421bd363b6cada0",
+      "bytes": 2373
+    },
+    {
+      "path": "tools/scpgo_runtime/run_icp_evidence.py",
+      "sha256": "ef0cafc163382986d19c1ede977742001ccb84e548f2418aa980590370d3a38d",
+      "bytes": 2241
+    },
+    {
+      "path": "tools/scpgo_runtime/static_check.py",
+      "sha256": "31abbec9003de73c8ffe338ceca1076f3136acf2685e2c7b24d49d908aa631cf",
+      "bytes": 3205
+    },
+    {
+      "path": "tools/scpgo_runtime/terminal_icp_audit_20261106.py",
+      "sha256": "3e619f9028bb9ef3312c572f6ec70e0c2e4f3f8fef6aaf0458b64a2b5ef4f61d",
+      "bytes": 2979
+    },
+    {
+      "path": "tools/scpgo_runtime/test_export_maps.py",
+      "sha256": "dc764d32f7f693d7c186765f48486ad505a992571e2e7416971b47f27c09eb04",
+      "bytes": 2475
+    },
+    {
+      "path": "tools/scpgo_runtime/validate_launch.py",
+      "sha256": "85c0307fb174d4334014c1fdc9acb9c4a6228ebca1ce3ba8668fec27920adae8",
+      "bytes": 3027
+    },
+    {
+      "path": "tools/scpgo_runtime/verification/effect-diagnosis.md",
+      "sha256": "a2048c8a38f423ad095177068eecddfe1e1c170ce44a6aca12c5c4146cee3f6e",
+      "bytes": 9376
+    },
+    {
+      "path": "tools/scpgo_runtime/watch.py",
+      "sha256": "6dcd9e469575b8b1901da092cc26341fc36370e2adbceb72d2a8f8f6c9711027",
+      "bytes": 3518
+    },
+    {
+      "path": "tools/scpgo_parameterization_20261106/README.md",
+      "sha256": "e450d78c7854c653271afc28505489a485bced1d61bb66674876d134bdc4e117",
+      "bytes": 3835
+    },
+    {
+      "path": "tools/scpgo_parameterization_20261106/backend-parameterized.launch",
+      "sha256": "e8090d017e28e08b02b176707dbbd22bc59d6d63861034740544451fa917d001",
+      "bytes": 741
+    },
+    {
+      "path": "tools/scpgo_parameterization_20261106/build-parameterized.sh",
+      "sha256": "64f4edda397cb966f359d655d93a4e0c62114468fb0760ab4a512b089f319bd6",
+      "bytes": 987
+    },
+    {
+      "path": "tools/scpgo_parameterization_20261106/check_config.py",
+      "sha256": "2de4b5213e2798155d442e50fdbe022a0cc3fbbfd6f70ad7f1dc23f914b513ba",
+      "bytes": 3573
+    },
+    {
+      "path": "tools/scpgo_parameterization_20261106/corridor01-indoor.yaml",
+      "sha256": "c6e942ce7ab4cf5e2190834c9303e72f877a796e10deeadbfbb2b670e85a797f",
+      "bytes": 1145
+    },
+    {
+      "path": "tools/scpgo_parameterization_20261106/final_audit.py",
+      "sha256": "803f20220fee0389afffe61c5f943e058015edcb9e77245c26428d5587c06d4a",
+      "bytes": 2319
+    },
+    {
+      "path": "tools/scpgo_parameterization_20261106/finalize.py",
+      "sha256": "f457f01b5b0ce59af36c9e0faa74d25ee4faa1974e2e75af54c790a10a234eaa",
+      "bytes": 494
+    },
+    {
+      "path": "tools/scpgo_parameterization_20261106/install.py",
+      "sha256": "059319e9df36657d8839b1640048414624810ee407ad8f8764625ce16b3511fe",
+      "bytes": 1393
+    },
+    {
+      "path": "tools/scpgo_parameterization_20261106/modified/BackendParameters.h",
+      "sha256": "6c140db641a25bae1e2d8854e21fbb35967b93dd76305ea5f8f0dd8e7ef6bfa2",
+      "bytes": 12976
+    },
+    {
+      "path": "tools/scpgo_parameterization_20261106/modified/Scancontext.cpp",
+      "sha256": "d6f4746b7a3d1cb8794513943bc1c48786f8a5dc79aa852d834ff52724488351",
+      "bytes": 15125
+    },
+    {
+      "path": "tools/scpgo_parameterization_20261106/modified/Scancontext.h",
+      "sha256": "28ef02e45dfd1647809e4863511ebaf6e229c762b384700fce6a99db8f99fd87",
+      "bytes": 5998
+    },
+    {
+      "path": "tools/scpgo_parameterization_20261106/modified/laserPosegraphOptimization.cpp",
+      "sha256": "1bd79b0f80fa5432b0a1c7262ac2a3e1cef8f06c138b5a9bc84dc4aabd066e8f",
+      "bytes": 37819
+    },
+    {
+      "path": "tools/scpgo_parameterization_20261106/modify.py",
+      "sha256": "e6bd4479181667e713d29be44ccc37510b1e14ea5ffbe6f3b0d8004700804380",
+      "bytes": 10458
+    },
+    {
+      "path": "tools/scpgo_parameterization_20261106/source/Scancontext.cpp",
+      "sha256": "d5b2e8400b8509571cf59b7d34507307a26396606ad6a0c5298b49d61db888d2",
+      "bytes": 15049
+    },
+    {
+      "path": "tools/scpgo_parameterization_20261106/source/Scancontext.h",
+      "sha256": "e8473a68d766fd40c768c83774af3f1cb7f0b1266ca701ed3d233bb6896bc02d",
+      "bytes": 5335
+    },
+    {
+      "path": "tools/scpgo_parameterization_20261106/source/laserPosegraphOptimization.cpp",
+      "sha256": "1ecce91260cad9153e51df92b794f4f9f1dde3d6d2b273f68a913bee84db6b24",
+      "bytes": 34503
+    },
+    {
+      "path": "tools/scpgo_geometry_validation_20261106/cases.cpp",
+      "sha256": "39946200913055ceb12ecaa4984cc558169e0b6579cb8a875c954cca8ab7728b",
+      "bytes": 5712
+    },
+    {
+      "path": "tools/scpgo_geometry_validation_20261106/extracted-functions.cpp",
+      "sha256": "afbb30410b406a490796de9f8e931b9960d6d380b1e3f9224f59994d6beba13b",
+      "bytes": 4910
+    },
+    {
+      "path": "tools/scpgo_geometry_validation_20261106/finalize.py",
+      "sha256": "f5766ee8385e37b0e718e524f4f3c5c95ee045866e81bca45ffe44d1951ccf44",
+      "bytes": 2368
+    },
+    {
+      "path": "tools/scpgo_geometry_validation_20261106/harness.cpp",
+      "sha256": "772de107df4c896669078d21df823edfb92ade9d01b4f549e113110cba666b08",
+      "bytes": 11579
+    },
+    {
+      "path": "tools/scpgo_geometry_validation_20261106/prefix.cpp",
+      "sha256": "dfa595613235bf0d31cdf698bb1a746879da19861a405323963aff28b328458d",
+      "bytes": 955
+    },
+    {
+      "path": "tools/scpgo_geometry_validation_20261106/prepare.py",
+      "sha256": "0ef88f88496ed44d7b28fd947f26f8800bb94471de713e2dc8e5ed053e8fa7c4",
+      "bytes": 2472
+    },
+    {
+      "path": "tools/scpgo_geometry_validation_20261106/run.sh",
+      "sha256": "33fe489429e6bf3cdf6ac3becb65ed655c047a9af46554b8e900abeacafb1e1c",
+      "bytes": 647
+    },
+    {
+      "path": "tools/scpgo_geometry_validation_20261106/验证结果.md",
+      "sha256": "ec58c1092f2a58902f94dcc321bd826f37e76f5f2a2a70c63c752da91edfd296",
+      "bytes": 5813
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/README.md",
+      "sha256": "6755011c01512530ac057424507ca8da5872e897fc4581ab2c031de0d926c19b",
+      "bytes": 3570
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/build.sh",
+      "sha256": "1f844a82c4a665e3d3360524803eefc82b50d99f067d373713d055883fcf68f2",
+      "bytes": 1287
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/check_backend.py",
+      "sha256": "b7798cfd972f4d207139824444fa32818d85d12405bce6c01494bb2f8be06e47",
+      "bytes": 2479
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/check_backend.sh",
+      "sha256": "a76431d03fd0ab635adbe02ddaf53333f136a5c9eae2fee9b1df9e3b2b8e911d",
+      "bytes": 162
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/final_audit.py",
+      "sha256": "0614134d65f117369db58adcdd4e9fa95dd22b84b6a77010baab4c0f62b9d30a",
+      "bytes": 3222
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/geometry-fix.patch",
+      "sha256": "725e596ac18478dbc8742ed5d0629d3a3e7ae87393092df4bab2c883a1ad8d11",
+      "bytes": 4761
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/install.py",
+      "sha256": "2cf66c8abf380442b9b8733b88c6af6fb16cbf80b8bb9db3697c700f98ce07ee",
+      "bytes": 1677
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/laserPosegraphOptimization.cpp",
+      "sha256": "d8dfc4eb299d8289d534f7407533784d036d3ad7caadba39f2b2fb3601581a50",
+      "bytes": 38784
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/prepare_fix.py",
+      "sha256": "11a8930c2c5d784d79670247c050583a5acd508de2e1ce685043cd3fbdba0a83",
+      "bytes": 5360
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/prepare_real.py",
+      "sha256": "290b181d4b36ff6a9f27d6665be11ad24b523ed07d5e31034be63b2559cfcb45",
+      "bytes": 3442
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/prepare_test.py",
+      "sha256": "cffdb3ae2bbd997b2fc6b53ef290c5e0f2c4af707c3c15618fa299c42ed3fe6d",
+      "bytes": 1064
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/real/fixed.cpp",
+      "sha256": "081187546f8cbfc4f6d147d3843c1a801b0cdb6b5dc5c4adb7c694d66cc1ccf5",
+      "bytes": 9217
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/real/original.cpp",
+      "sha256": "f01f280623daf15ceb2d4d8b76b3296a05c5d4a8afa2466d5aa0b9fd4f6864cf",
+      "bytes": 8261
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/real.sh",
+      "sha256": "dd0dfcf60f564f1fb6a57773524efdbe3baedf36aa6f47c36e9032a156405b99",
+      "bytes": 806
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/real_cases.cpp",
+      "sha256": "bf57847a84abf522ac6ca3420aa00ef16d95960eaa63510fb9e23c2a99ae9dd2",
+      "bytes": 2210
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/summarize.py",
+      "sha256": "ea758270c7a55756c72349eb27b55e5ae42310d37af83e02506c875a5b8a2c70",
+      "bytes": 2432
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/synthetic/cases.cpp",
+      "sha256": "c34478a2d884b65921a75f98adc285a5e19b3b734f4736a9acc3a43050a8ebe4",
+      "bytes": 5252
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/synthetic/extracted-functions.cpp",
+      "sha256": "54fa3aa63cef39e8c5b2ab714c9c8e2191919e9e63c513ab0218286958db6af5",
+      "bytes": 6022
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/synthetic/harness.cpp",
+      "sha256": "9cc9166ec8b150dc4968b9828aaf48df368992b8f8336b77709cee67de67e211",
+      "bytes": 12231
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/synthetic/prefix.cpp",
+      "sha256": "dfa595613235bf0d31cdf698bb1a746879da19861a405323963aff28b328458d",
+      "bytes": 955
+    },
+    {
+      "path": "tools/scpgo_geometry_fix_20261106/test.sh",
+      "sha256": "4e909dd45b1b661a1eaae3d85441e40999cd327d52483d42b6f9777c3aa5bd0d",
+      "bytes": 652
+    },
+    {
+      "path": "tools/scpgo_terminal_diagnosis_20261106/README.md",
+      "sha256": "7729de715c1ea52e427adec7e653f03e03cb161def875a3e0368bd1cef26861c",
+      "bytes": 5357
+    },
+    {
+      "path": "tools/scpgo_terminal_diagnosis_20261106/analyze.py",
+      "sha256": "5f49b094133c8c25a8bdf2d95cd9f9cd40894956d8f96590b947643c7d9a7a31",
+      "bytes": 5426
+    },
+    {
+      "path": "tools/scpgo_terminal_diagnosis_20261106/camera_check.py",
+      "sha256": "79ee1e2619e12bb5fdb7fb888a3ea92c6b984f07481324801b2c8750e98ba31f",
+      "bytes": 1557
+    },
+    {
+      "path": "tools/scpgo_terminal_diagnosis_20261106/diagnose.cpp",
+      "sha256": "a187b6663b9239f6a46e7c659856320b384a7b92e4829167fbd7bd5b5b9ec101",
+      "bytes": 5986
+    },
+    {
+      "path": "tools/scpgo_terminal_diagnosis_20261106/finalize.py",
+      "sha256": "03756f084c541db9751b3b14dfbbeb2a64b7ae08db103e376104904d85513993",
+      "bytes": 2951
+    },
+    {
+      "path": "tools/scpgo_terminal_diagnosis_20261106/prepare.py",
+      "sha256": "565a2a95755483f92c5dd097ecc97a70cf7206c8c5cdabb9432fe38c3e06fe53",
+      "bytes": 2608
+    },
+    {
+      "path": "tools/scpgo_terminal_diagnosis_20261106/probe.cpp",
+      "sha256": "a9b7cf4b85a536b82c8571f60576672acaddb20ff658a886b1e6527bf4e77229",
+      "bytes": 9751
+    },
+    {
+      "path": "tools/scpgo_terminal_diagnosis_20261106/run.sh",
+      "sha256": "212a191ced70426c897039e912a879140d44223e460eb6cbf18cb49d4bdf8b7a",
+      "bytes": 721
+    },
+    {
+      "path": "tools/scpgo_distance_ablation_20261107/README.md",
+      "sha256": "4b36bf15a038d05cb250d37937c7e75648b3b7de833d7104446c2bffef2f5b15",
+      "bytes": 3896
+    },
+    {
+      "path": "tools/scpgo_distance_ablation_20261107/analyze.py",
+      "sha256": "bde2495f4946734ff366560ec1f165238db9287c978ee38abe073836ec03787c",
+      "bytes": 6378
+    },
+    {
+      "path": "tools/scpgo_distance_ablation_20261107/final_audit.py",
+      "sha256": "3b6847d93ff047341fa892b98c1ff96cc87bbdebe4c4cd0bdcde616834a816a1",
+      "bytes": 2692
+    },
+    {
+      "path": "tools/scpgo_distance_ablation_20261107/prepare.py",
+      "sha256": "65439d6a09c647a8e10b65cb1e6fb7422ab63ee27234d93abcef57f03e7c928f",
+      "bytes": 2449
+    },
+    {
+      "path": "tools/scpgo_distance_ablation_20261107/probe.cpp",
+      "sha256": "d901680ca01ada06be2a7bc7c59e6c85526b046e83d8b496cd67e0193ae4f0d6",
+      "bytes": 2786
+    },
+    {
+      "path": "tools/scpgo_distance_ablation_20261107/run.sh",
+      "sha256": "a26c673d770c5b19987e525310942380b0e963eed42990b36eeab8a3277095c7",
+      "bytes": 412
+    },
+    {
+      "path": "tools/scpgo_acceptance_audit_20261107/README.md",
+      "sha256": "f5273db86473ef62db9c7c5f0a7d1ec1a1e0ee55d768d087bdcd7c0ca8f4f162",
+      "bytes": 4884
+    },
+    {
+      "path": "tools/scpgo_acceptance_audit_20261107/analyze.py",
+      "sha256": "f6fb7397517b977ba6a092c4eaa96ae12942dd90c2e6578b7be30f051f6706bb",
+      "bytes": 3728
+    },
+    {
+      "path": "tools/scpgo_acceptance_audit_20261107/cameras.py",
+      "sha256": "47990b6e3cd99e0d5dca3a01a61de61a4e250487d1856c35b19fb137e91460b8",
+      "bytes": 1572
+    },
+    {
+      "path": "tools/scpgo_acceptance_audit_20261107/finalize.py",
+      "sha256": "d9d33fcfdeda9dca40db384473a1af389f669da440b192ef8ffe67c9d776182c",
+      "bytes": 1804
+    },
+    {
+      "path": "tools/scpgo_geometry_replay_20261107/README.md",
+      "sha256": "47da314f809d3b0c7279af1a282993e2f2c77d5a5bdd226f38319e74ad9e6381",
+      "bytes": 4038
+    },
+    {
+      "path": "tools/scpgo_geometry_replay_20261107/compare.py",
+      "sha256": "8d6b5e0435bba87306225d6e78789cff2e732c443c60fb5584d5907255a2168a",
+      "bytes": 3447
+    },
+    {
+      "path": "tools/scpgo_geometry_replay_20261107/manage.py",
+      "sha256": "99f48180265c1c31a9f495730f976cb2f300c7cfd6f70c5fd46251e5ca959758",
+      "bytes": 4905
+    },
+    {
+      "path": "tools/scpgo_geometry_replay_20261107/replay.sh",
+      "sha256": "2b16fe0550fb84fcb0f39e0902a26373ab1a7775728f809bfe6da45fa969a188",
+      "bytes": 6582
+    },
+    {
+      "path": "tools/scpgo_geometry_replay_20261107/reset_old.py",
+      "sha256": "65ce7cfef7edd8a93504c20a524a01ae00463e965ef75d6925483d01fd3c31e6",
+      "bytes": 2546
+    },
+    {
+      "path": "tools/scpgo_geometry_effect_audit_20261107/NEXT_STEPS.md",
+      "sha256": "c6098398ada3e987e2efffa95879800b5b1db5276f787c9d96abda40b2d596f1",
+      "bytes": 4694
+    },
+    {
+      "path": "tools/scpgo_geometry_effect_audit_20261107/README.md",
+      "sha256": "f7abe4f86c10da90da4536dd7749abef3c8cf88a0d81ad81266ed10e3555a31a",
+      "bytes": 5072
+    },
+    {
+      "path": "tools/scpgo_geometry_effect_audit_20261107/analyze.py",
+      "sha256": "9a294ff2d7625081cd929af3bdaf4d7244a7d954d31456cd657fdae0e642f38b",
+      "bytes": 13627
+    },
+    {
+      "path": "tools/scpgo_geometry_effect_audit_20261107/corridor02_readiness.py",
+      "sha256": "4984c5790d86602ce4308d43eff80ff2e3ed48bde92fcc4570a64f7a99a84fc4",
+      "bytes": 1687
+    },
+    {
+      "path": "tools/corridor01_full/BLIND4.md",
+      "sha256": "70c41b303a49046a2e0f5ad11b0d723b3e8fe3f6527ee9ab8eaabe7b1c27594b",
+      "bytes": 7279
+    },
+    {
+      "path": "tools/corridor01_full/README.md",
+      "sha256": "400667302ce3cb90733b09ed73eefbe2c4d8a3c0ab478a2aeee72c013ed292ca",
+      "bytes": 14648
+    },
+    {
+      "path": "tools/corridor01_full/allow_optional_watch.py",
+      "sha256": "83d90cc3fdf58eb3fc63ce6c339686186c39ad01d5a8325abe8256937a98137a",
+      "bytes": 1709
+    },
+    {
+      "path": "tools/corridor01_full/analyze_blind_comparison.py",
+      "sha256": "41344f01a2b35f6d204b03e36a6e82099f136ca6fc1cb7b42ad17b050ad04e4d",
+      "bytes": 8210
+    },
+    {
+      "path": "tools/corridor01_full/audit_input.py",
+      "sha256": "c50485e80b1b544be874bbdfc2bcef281ea3c4445d815fe39c2cf9a63aea44a6",
+      "bytes": 2408
+    },
+    {
+      "path": "tools/corridor01_full/build_tools.py",
+      "sha256": "c44b47c6c8c3284a2dd312a320d8471971baf8979b860b0e77306036ffc0b9dc",
+      "bytes": 2507
+    },
+    {
+      "path": "tools/corridor01_full/check_blind_identity.py",
+      "sha256": "1fd8cdd94ac577315b5647afb9b8ab1f091fba45754f45f3b3a726e84370dfe6",
+      "bytes": 579
+    },
+    {
+      "path": "tools/corridor01_full/check_prepared_b4.py",
+      "sha256": "2b7ee39446a680cc8a95a006cc32bfb2bf3072f25526756fc8747e6fc1c94cb8",
+      "bytes": 1092
+    },
+    {
+      "path": "tools/corridor01_full/check_static.py",
+      "sha256": "c0222cc9f39d729b75421c07b67d0ca9f41278667219558e45f5af5847518945",
+      "bytes": 6084
+    },
+    {
+      "path": "tools/corridor01_full/compare_pcd.py",
+      "sha256": "999f2e30084118b1343a228db8b83fb78a2c7f00b614aa2748e40023b9a1960f",
+      "bytes": 2679
+    },
+    {
+      "path": "tools/corridor01_full/downsample_pcd.py",
+      "sha256": "9b65f6b863ebf44311377e697e2972b17d8ae0d0e20697197c2c3466d0c29e2c",
+      "bytes": 3230
+    },
+    {
+      "path": "tools/corridor01_full/downsample_sparse_voxels.py",
+      "sha256": "53b8f817ffec6b06bf69cc035768b4f155478ec0dc38db0616202b649aa08abb",
+      "bytes": 3066
+    },
+    {
+      "path": "tools/corridor01_full/end_status.py",
+      "sha256": "9ce5f2b81295e8bd0d862d2c4e261d7cc13cc699962811583931e58863d8aade",
+      "bytes": 1142
+    },
+    {
+      "path": "tools/corridor01_full/export_pcd.py",
+      "sha256": "2dd52794e0ac5998443eb73e3ba8546735b32458928b3173084defffdfde35ca",
+      "bytes": 2842
+    },
+    {
+      "path": "tools/corridor01_full/prepare.sh",
+      "sha256": "ec41723591e5a732809c2faf1daa8a958919c88288140bad7200914e5947ee8f",
+      "bytes": 4626
+    },
+    {
+      "path": "tools/corridor01_full/ready.py",
+      "sha256": "98ab0b4dbfdbc45260bad05d0e71ab8d7654d123c16026d3940329caef18ed0e",
+      "bytes": 3385
+    },
+    {
+      "path": "tools/corridor01_full/reuse_empty_001.py",
+      "sha256": "a081fde9f25728b2b5699b957b1aa78d9fa3492feee331815fe3ee3901a0d21c",
+      "bytes": 2871
+    },
+    {
+      "path": "tools/corridor01_full/review_results.py",
+      "sha256": "95eab295ff7abfcce5a09dba65d87753515a67a6ba4f34c979eceb66bade138b",
+      "bytes": 2669
+    },
+    {
+      "path": "tools/corridor01_full/run.sh",
+      "sha256": "a5a28c596cbc94b8ea9d8dfb0c03c01bdb1689b2eea5a3571e772bc08075b8f4",
+      "bytes": 6527
+    },
+    {
+      "path": "tools/corridor01_full/test_sparse_voxels.py",
+      "sha256": "f0742585dfe91567067d64c1110c82cddcad1174e393726b40429937e35deece",
+      "bytes": 975
+    },
+    {
+      "path": "tools/corridor01_full/trajectory.py",
+      "sha256": "f5292f6ea169636f2c4aa649f6c3f39e488bf0f4537d83a05706c5cdaf95f004",
+      "bytes": 2263
+    },
+    {
+      "path": "tools/corridor01_full/verify.py",
+      "sha256": "d44eb77725f4e8af4c845464b030df24b3f57581ec784fe011c32b912125b99c",
+      "bytes": 8060
+    },
+    {
+      "path": "tools/corridor01_full/watch.py",
+      "sha256": "014635839ff722d68e18aaf28353f864a06d3901608e46711ea701f4a6decb06",
+      "bytes": 1936
+    },
+    {
+      "path": "tools/corridor02_full/README.md",
+      "sha256": "ce2503bb543b4d56d2c22dc8d53c371346136bc7734f22c8aead5e9fe0b14dd8",
+      "bytes": 11953
+    },
+    {
+      "path": "tools/corridor02_full/audit_environment.sh",
+      "sha256": "951c6bc88f06676d66225cbc890b456551e5f1e8c0f54bdf79f7024640936089",
+      "bytes": 2462
+    },
+    {
+      "path": "tools/corridor02_full/check_height_frame.py",
+      "sha256": "cd3248cdbdeb1e4245c664e5876e117057ead3c9366f1556c1b2b70ec834e551",
+      "bytes": 1261
+    },
+    {
+      "path": "tools/corridor02_full/check_static.py",
+      "sha256": "0b6187d0d3fcdde0e87a42b7284741ef924fe115be98d64d05f249f08ee6fe76",
+      "bytes": 1098
+    },
+    {
+      "path": "tools/corridor02_full/downsample_pcd.py",
+      "sha256": "a18270a58ec4ea173b0bd8304061ff4e14c5973b6961bfb2ef5e62ae5900f7ec",
+      "bytes": 3265
+    },
+    {
+      "path": "tools/corridor02_full/export_pcd.py",
+      "sha256": "2dd52794e0ac5998443eb73e3ba8546735b32458928b3173084defffdfde35ca",
+      "bytes": 2842
+    },
+    {
+      "path": "tools/corridor02_full/map_review.py",
+      "sha256": "427ac9cf17e7adb1aad9758461a1224d149166c2c42dce4d8a7c29a8d2f1e03d",
+      "bytes": 5438
+    },
+    {
+      "path": "tools/corridor02_full/prepare.sh",
+      "sha256": "f01d5d4707c8bb8e74bfdcf0fa48598ea46c6a99deeaebd54e8fbbb8fe13b202",
+      "bytes": 3244
+    },
+    {
+      "path": "tools/corridor02_full/review_full_001.py",
+      "sha256": "1dc9fef98701f9ec8018a7a093d60210dcadc6bcd286b5547bf6f56b5e6e1dd3",
+      "bytes": 2157
+    },
+    {
+      "path": "tools/corridor02_full/run.sh",
+      "sha256": "33375c55ac30adfbf2567b354490213194a20a36ee361c4ee374d2982cdb7bd8",
+      "bytes": 5817
+    },
+    {
+      "path": "tools/corridor02_full/test_export_pcd.py",
+      "sha256": "6e9e524cc932ee24cfea26a144ebca340602396aceffedae3939a96f80996b6b",
+      "bytes": 1355
+    },
+    {
+      "path": "tools/corridor02_full/verify.py",
+      "sha256": "9cbd7e3eb2bb44d735a2b73a0bdf726de770eda913541d9542fb4d9a172e805c",
+      "bytes": 8060
+    },
+    {
+      "path": "tools/corridor02_full/watch.py",
+      "sha256": "fd31784b4dfe32e7336a293cca8382452bbe8bb4fd467043eaad3e4db7ec7747",
+      "bytes": 1936
+    }
+  ],
+  "limits": [
+    "Selected source and authored notes only. Raw data, point clouds, binary outputs, detailed result JSON/CSV and preview images remain local.",
+    "Historical tool scripts retain their recorded absolute paths and run IDs; they are not fresh generic launchers.",
+    "CRLF and inherited whitespace in tested C++ are retained to preserve the exact tested source bytes."
+  ]
+}

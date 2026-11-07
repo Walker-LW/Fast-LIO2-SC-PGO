@@ -1,0 +1,7 @@
+# Only parameters read by laserPosegraphOptimization.cpp main().
+# Values equal source defaults; not a tuned Avia profile.
+keyframe_meter_gap: 2.0
+keyframe_deg_gap: 10.0
+sc_dist_thres: 0.2
+sc_max_radius: 80.0
+mapviz_filter_size: 0.4

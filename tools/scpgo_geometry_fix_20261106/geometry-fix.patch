@@ -1,0 +1,92 @@
+--- before/laserPosegraphOptimization.cpp
++++ after/laserPosegraphOptimization.cpp
+@@ -401,24 +401,32 @@
+     return cloudOut;
+ } // transformPointCloud
+ 
+-void loopFindNearKeyframesCloud( pcl::PointCloud<PointType>::Ptr& nearKeyframes, const int& key, const int& submap_size, const int& root_idx)
+-{
+-    // extract and stacking near keyframes (in global coord)
++void loopFindNearKeyframesCloud( pcl::PointCloud<PointType>::Ptr& nearKeyframes, const int& key, const int& submap_size, const int& root_idx, Pose6D* root_pose = nullptr)
++{
++    // Each stored scan is in its own body frame. Snapshot poses together so
++    // all members of this submap use the same optimization state.
+     nearKeyframes->clear();
+-    for (int i = -submap_size; i <= submap_size; ++i) {
+-        int keyNear = key + i;
+-        if (keyNear < 0 || keyNear >= int(keyframeLaserClouds.size()) )
+-            continue;
+-
+-        mKF.lock(); 
+-        *nearKeyframes += * local2global(keyframeLaserClouds[keyNear], keyframePosesUpdated[root_idx]);
+-        mKF.unlock(); 
+-    }
+-
+-    if (nearKeyframes->empty())
+-        return;
+-
+-    // downsample near keyframes
++    Pose6D root;
++    std::vector<std::pair<pcl::PointCloud<PointType>::Ptr, Pose6D>> frames;
++    {
++        std::lock_guard<std::mutex> lock(mKF);
++        root = keyframePosesUpdated.at(root_idx);
++        if (root_pose) *root_pose = root;
++        for (int i = -submap_size; i <= submap_size; ++i) {
++            const int keyNear = key + i;
++            if (keyNear < 0 || keyNear >= int(keyframeLaserClouds.size())) continue;
++            frames.emplace_back(keyframeLaserClouds[keyNear], keyframePosesUpdated.at(keyNear));
++        }
++    }
++    const gtsam::Pose3 worldFromRoot = Pose6DtoGTSAMPose3(root);
++    for (const auto& frame : frames) {
++        const gtsam::Pose3 rootFromFrame = worldFromRoot.between(Pose6DtoGTSAMPose3(frame.second));
++        const auto t = rootFromFrame.translation();
++        const auto rpy = rootFromFrame.rotation().rpy();
++        const Pose6D relative {t.x(), t.y(), t.z(), rpy.x(), rpy.y(), rpy.z()};
++        *nearKeyframes += *local2global(frame.first, relative);
++    }
++    if (nearKeyframes->empty()) return;
+     pcl::PointCloud<PointType>::Ptr cloud_temp(new pcl::PointCloud<PointType>());
+     downSizeFilterICP.setInputCloud(nearKeyframes);
+     downSizeFilterICP.filter(*cloud_temp);
+@@ -432,17 +440,19 @@
+     int historyKeyframeSearchNum = backendParameters.icp_submap_half_frames; // enough. ex. [-25, 25] covers submap length of 50x1 = 50m if every kf gap is 1m
+     pcl::PointCloud<PointType>::Ptr cureKeyframeCloud(new pcl::PointCloud<PointType>());
+     pcl::PointCloud<PointType>::Ptr targetKeyframeCloud(new pcl::PointCloud<PointType>());
+-    loopFindNearKeyframesCloud(cureKeyframeCloud, _curr_kf_idx, 0, _loop_kf_idx); // use same root of loop kf idx 
+-    loopFindNearKeyframesCloud(targetKeyframeCloud, _loop_kf_idx, historyKeyframeSearchNum, _loop_kf_idx); 
+-
+-    // loop verification 
++    Pose6D sourceRoot, targetRoot;
++    // ICP source: current body frame; target: historical root body frame.
++    loopFindNearKeyframesCloud(cureKeyframeCloud, _curr_kf_idx, 0, _curr_kf_idx, &sourceRoot);
++    loopFindNearKeyframesCloud(targetKeyframeCloud, _loop_kf_idx, historyKeyframeSearchNum, _loop_kf_idx, &targetRoot);
++
++    // Publish world-coordinate copies for inspection; ICP inputs stay local.
+     sensor_msgs::PointCloud2 cureKeyframeCloudMsg;
+-    pcl::toROSMsg(*cureKeyframeCloud, cureKeyframeCloudMsg);
++    pcl::toROSMsg(*local2global(cureKeyframeCloud, sourceRoot), cureKeyframeCloudMsg);
+     cureKeyframeCloudMsg.header.frame_id = "camera_init";
+     pubLoopScanLocal.publish(cureKeyframeCloudMsg);
+ 
+     sensor_msgs::PointCloud2 targetKeyframeCloudMsg;
+-    pcl::toROSMsg(*targetKeyframeCloud, targetKeyframeCloudMsg);
++    pcl::toROSMsg(*local2global(targetKeyframeCloud, targetRoot), targetKeyframeCloudMsg);
+     targetKeyframeCloudMsg.header.frame_id = "camera_init";
+     pubLoopSubmapLocal.publish(targetKeyframeCloudMsg);
+ 
+@@ -473,10 +483,9 @@
+     Eigen::Affine3f correctionLidarFrame;
+     correctionLidarFrame = icp.getFinalTransformation();
+     pcl::getTranslationAndEulerAngles (correctionLidarFrame, x, y, z, roll, pitch, yaw);
+-    gtsam::Pose3 poseFrom = Pose3(Rot3::RzRyRx(roll, pitch, yaw), Point3(x, y, z));
+-    gtsam::Pose3 poseTo = Pose3(Rot3::RzRyRx(0.0, 0.0, 0.0), Point3(0.0, 0.0, 0.0));
+-
+-    return poseFrom.between(poseTo);
++    // ICP maps current-body points into historical-body coordinates:
++    // Z = inverse(T_world_previous) * T_world_current, as BetweenFactor(p,c) expects.
++    return Pose3(Rot3::RzRyRx(roll, pitch, yaw), Point3(x, y, z));
+ } // doICPVirtualRelative
+ 
+ void process_pg()

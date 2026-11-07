@@ -1,0 +1,12 @@
+<launch>
+  <arg name="run_dir" />
+  <group ns="scpgo">
+    <rosparam command="load" file="$(arg run_dir)/config/backend.yaml" />
+    <param name="save_directory" type="str" value="$(arg run_dir)/backend/" />
+    <node pkg="aloam_velodyne" type="alaserPGO" name="alaserPGO" output="screen" required="true">
+      <remap from="/aft_mapped_to_init" to="/Odometry" />
+      <remap from="/velodyne_cloud_registered_local" to="/cloud_registered_body" />
+      <remap from="/gps/fix" to="/scpgo/unused_gps" />
+    </node>
+  </group>
+</launch>
