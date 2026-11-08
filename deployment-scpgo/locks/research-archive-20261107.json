@@ -7,18 +7,18 @@
   "files": [
     {
       "path": "FAST-LIO2迭代记录与会话交接.md",
-      "sha256": "eae8855cd52198782c172007bf8477daa5b47fbe784ec161e09d5eb58df26134",
-      "bytes": 13160
+      "sha256": "235cdfc0e224847d259bed5d4838f0f2cb84322a44b8b2c5919b6da5da87dcdb",
+      "bytes": 14173
     },
     {
       "path": "FAST-LIO2问题处理与改进复盘.md",
-      "sha256": "02bb4e77c95154a5738e75be5b80e9e417752715faa84f8179c5abc9a7367531",
-      "bytes": 108774
+      "sha256": "5e7dbe5a56f9ac787ea8c5b88350bb774a7d0212572817f5806a911eeab50b45",
+      "bytes": 111196
     },
     {
       "path": "FAST-LIO2研究路线与进度.md",
-      "sha256": "cea92680171d0560b4601f4dc2b7c94b7788a97b04a1a988dabb828f37bfc4f7",
-      "bytes": 30118
+      "sha256": "05d4c6e89b26529a992f04e303d25b49b59bb399cc88c1782718cbfa107aea2d",
+      "bytes": 30636
     },
     {
       "path": "tools/scpgo_runtime/README.md",
@@ -754,6 +754,26 @@
       "path": "tools/scpgo_corridor02_geometry_20261107/test_recovery.py",
       "sha256": "6a137dc4302de9c1878a15155bda09cb78ccd83ba6bd737aeb973e9c6e0ecdee",
       "bytes": 3522
+    },
+    {
+      "path": "tools/scpgo_corridor02_effect_audit_20261108/audit.py",
+      "sha256": "362a0a1875161ae8e8f1a52a8a23b6498534c20d45e3d6ea4b508e797ceaa1db",
+      "bytes": 11179
+    },
+    {
+      "path": "tools/scpgo_corridor02_effect_audit_20261108/keyframe_source_check.py",
+      "sha256": "4e48ff2d8d2994da3c0bab072d874cde7bf5ddaf2d0df53686f7c528ae7a9faf",
+      "bytes": 1996
+    },
+    {
+      "path": "tools/scpgo_corridor02_effect_audit_20261108/map_tail_check.py",
+      "sha256": "2dc60f11386997c11842be3a3db2fdf3b108553928ebfead8f4e47d52c424952",
+      "bytes": 2399
+    },
+    {
+      "path": "tools/scpgo_corridor02_effect_audit_20261108/README.md",
+      "sha256": "b9e941888a906485529046e12af99557a6bcd514bf214b16922854f65c679a85",
+      "bytes": 6321
     }
   ],
   "limits": [
@@ -761,5 +781,5 @@
     "Historical tool scripts retain their recorded absolute paths and run IDs; they are not fresh generic launchers.",
     "CRLF and inherited whitespace in tested C++ are retained to preserve the exact tested source bytes."
   ],
-  "latest_addition": "2026-11-08: fix false node-stop timeout and add non-destructive recovery for an existing completed input checkpoint."
+  "latest_addition": "2026-11-08: completed Corridor02 effect audit and recorded late-tail stability, with unpublished final-node and event-time limits."
 }
