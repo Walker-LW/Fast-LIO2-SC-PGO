@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
 run=$(cd -- "$(dirname -- "$0")" && pwd)
-name=scpgo-corridor02-geometry-20261107-001
+name=$(basename -- "$run")
+[[ "$name" =~ ^scpgo-corridor02-geometry-[0-9]{8}-[0-9]{3}$ ]]
 workspace=/home/lw/slam-research/fast_lio_ws
 image=sha256:f306a0ec73450db1aa499376f84c0aa56d1046069ceb435087bd46b54e7e6db5
 action=${1:?Use master|frontend|backend|record|ready|status|play}
 [[ "$run" == /home/lw/slam-research/results/scpgo/$name ]]
 [[ -f "$run/config/manifest.json" ]]
+python3 - "$run/config/manifest.json" "$name" <<'PY'
+import json,sys
+assert json.load(open(sys.argv[1]))['id'] == sys.argv[2], 'Directory name and frozen experiment ID differ'
+PY
 r() { docker exec "$name" /bin/bash -c 'source /opt/ros/noetic/setup.bash; source /ws/devel/setup.bash; source /ws/devel_scpgo_geometry/setup.bash; exec "$@"' _ "$@"; }
 ready_node() {
   local node=$1

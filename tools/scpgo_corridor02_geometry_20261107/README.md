@@ -2,6 +2,8 @@
 
 2026-11-07。用户已确认沿用上轮正式配置。新入口已通过真实环境程序身份/launch展开/参数检查，以及合成录包→导图→量化/出图→防覆盖检查；尚未准备正式结果目录或运行真实数据。所有正式阶段由用户手动执行。
 
+2026-11-08路径纠正：工具目录`scpgo_corridor02_geometry_20261107`是实际存在的工具版本目录，不能随当天日期手动改名。本次实验编号单独用`--id`明确指定为`scpgo-corridor02-geometry-20261108-001`。准备后的副本自动读取冻结manifest中的编号，run.sh读取并核对自身目录名；本页命令已统一为这一组合。先前07编号入口保留兼容，但下文不混用。
+
 ## 实验范围与固定值
 
 原始`/datasets/Corridor02.bag`的LiDAR＋IMU→原FAST-LIO2→几何修正SC-PGO，完整1倍速。比较本次相同关键帧/点集的PGO前后，不将旧前端运行当成严格相同输入对照。旧基线2930条输出只作覆盖参考，不能强行补齐/删除成该数量。新关键帧数由本轮实际输出确定，不套用Corridor01的383帧。
@@ -21,7 +23,7 @@
 
 新结果目录（本次只读检查时未占用）：
 
-`/home/lw/slam-research/results/scpgo/scpgo-corridor02-geometry-20261107-001`
+`/home/lw/slam-research/results/scpgo/scpgo-corridor02-geometry-20261108-001`
 
 输入、工作空间只读挂载；Log/PCD分别挂载到本次目录。任何阶段出错就停止并保留日志，不能删除标记、重复backend或复用旧结果路径。后端启动有清理自身Scans的行为，所以设置单次启动保护。
 
@@ -39,7 +41,8 @@ wsl.exe -d Ubuntu-24.04 -u lw
 
 ```bash
 C2TOOLS=/mnt/d/projects/fast-lio2-learning/tools/scpgo_corridor02_geometry_20261107
-C2RUN=/home/lw/slam-research/results/scpgo/scpgo-corridor02-geometry-20261107-001
+C2ID=scpgo-corridor02-geometry-20261108-001
+C2RUN=/home/lw/slam-research/results/scpgo/$C2ID
 ```
 
 终端A负责启动和播放，B负责观察和收尾。变量只影响当前终端，不启动任何程序。
@@ -47,16 +50,17 @@ C2RUN=/home/lw/slam-research/results/scpgo/scpgo-corridor02-geometry-20261107-00
 ### 2. 终端A预检与准备（必需）
 
 ```bash
-python3 "$C2TOOLS/manage.py" preflight
+ls -l "$C2TOOLS/manage.py"
+python3 "$C2TOOLS/manage.py" preflight --id "$C2ID"
 ```
 
 检查镜像、原前端/几何修正版哈希、批准配置、原包存在性和脚本语法；存在其它运行容器时停止，先核对干扰。预期`PREFLIGHT_PASS`。
 
 ```bash
-python3 "$C2TOOLS/manage.py" prepare
+python3 "$C2TOOLS/manage.py" prepare --id "$C2ID"
 ```
 
-只创建新输出目录，复制冻结脚本和配置，读取bag元数据，展开launch，计算输入校验值；不启动ROS、估计器或播放。约5GB原包哈希会读取磁盘。预期`PREPARED_NOT_STARTED`。目录或同名容器已存在时拒绝，失败准备保留现场，不能直接重跑。
+只创建新输出目录，复制冻结脚本和配置，读取bag元数据，展开launch，计算输入校验值；不启动ROS、估计器或播放。约5GB原包哈希会读取磁盘。预检必须打印08实验编号及同一输出路径，准备预期`PREPARED_NOT_STARTED`。目录或同名容器已存在时拒绝，失败准备保留现场，不能直接重跑。后续从`C2RUN`内调用manage.py时不需要再传ID，它自动读取本次manifest并拒绝不同编号，防止跨目录操作。
 
 ### 3. 终端A启动主服务（必需）
 

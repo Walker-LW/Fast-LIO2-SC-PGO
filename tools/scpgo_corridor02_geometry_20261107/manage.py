@@ -1,10 +1,12 @@
 """Manual full Corridor02 run orchestration. Never starts playback implicitly."""
 import argparse
 import ast
+from datetime import datetime
 import hashlib
 import json
 from pathlib import Path
 import shutil
+import re
 import subprocess
 import sys
 import time
@@ -19,6 +21,25 @@ ID = 'scpgo-corridor02-geometry-20261107-001'
 RUN = BASE / 'results/scpgo' / ID
 BINARY = {'devel/lib/fast_lio/fastlio_mapping': '607d6fc36c4efeaefbb8d375e23fbe199da8356d014f75fbe8ca802f289773be',
           'devel_scpgo_geometry/lib/aloam_velodyne/alaserPGO': '03d2e316a408a1906a9613757794af4888512b34b2aae5683d7aab17d4b3c9c6'}
+
+
+def select_run_id(requested=None):
+    """Tool version directory stays fixed; prepared copies use their manifest ID."""
+    global ID, RUN
+    manifest = HERE / 'config/manifest.json'
+    if manifest.is_file():
+        recorded = json.loads(manifest.read_text())['id']
+        assert requested is None or requested == recorded, 'ID conflicts with this prepared run manifest'
+        selected = recorded
+    else:
+        selected = requested if requested is not None else ID  # Preserve the original command interface.
+    match = re.fullmatch(r'scpgo-corridor02-geometry-(\d{8})-(\d{3})', selected)
+    assert match, 'Use scpgo-corridor02-geometry-YYYYMMDD-NNN'
+    datetime.strptime(match.group(1), '%Y%m%d')
+    ID = selected
+    RUN = BASE / 'results/scpgo' / ID
+    if manifest.is_file():
+        assert HERE == RUN, 'Prepared script must execute from its own recorded output directory'
 
 
 def sha(p):
@@ -47,6 +68,8 @@ def preflight():
     for p in HERE.glob('*.py'): ast.parse(p.read_text())
     subprocess.run(['bash', '-n', str(HERE / 'run.sh')], check=True)
     print('PREFLIGHT_PASS: binaries, approved profile, input and syntax; no algorithm started')
+    print('EXPERIMENT_ID:', ID)
+    print('OUTPUT_DIRECTORY:', RUN)
 
 
 def prepare():
@@ -154,7 +177,10 @@ def offline(action):
 if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('action', choices=['preflight', 'prepare', 'finish', 'export', 'analyze'])
-    action = p.parse_args().action
+    p.add_argument('--id', dest='run_id', help='Explicit experiment ID for preflight/prepare; prepared copies read their frozen manifest')
+    args = p.parse_args()
+    select_run_id(args.run_id)
+    action = args.action
     if action == 'preflight': preflight()
     elif action == 'prepare': prepare()
     elif action == 'finish': finish()
