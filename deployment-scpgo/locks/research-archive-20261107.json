@@ -7,18 +7,18 @@
   "files": [
     {
       "path": "FAST-LIO2迭代记录与会话交接.md",
-      "sha256": "235cdfc0e224847d259bed5d4838f0f2cb84322a44b8b2c5919b6da5da87dcdb",
-      "bytes": 14173
+      "sha256": "d0c953aea5270717ffdbdae74c9ad314974ef1475ed8cf99cd10a9410a0858dd",
+      "bytes": 13632
     },
     {
       "path": "FAST-LIO2问题处理与改进复盘.md",
-      "sha256": "5e7dbe5a56f9ac787ea8c5b88350bb774a7d0212572817f5806a911eeab50b45",
-      "bytes": 111196
+      "sha256": "bc240fbfd9bb135738f8826d976c7e8af63ac82a9c799c6dc8672dab709a7d60",
+      "bytes": 112630
     },
     {
       "path": "FAST-LIO2研究路线与进度.md",
-      "sha256": "05d4c6e89b26529a992f04e303d25b49b59bb399cc88c1782718cbfa107aea2d",
-      "bytes": 30636
+      "sha256": "5175f6a525dbd6e5d63e3bdd4754f11c941897c55e03d9d6453e0c5b733bd04f",
+      "bytes": 29617
     },
     {
       "path": "tools/scpgo_runtime/README.md",
@@ -502,13 +502,13 @@
     },
     {
       "path": "tools/scpgo_geometry_effect_audit_20261107/NEXT_STEPS.md",
-      "sha256": "4fdee7929a86714db66a06f7bc384254f54fbb0fd1f4a0d504f480e749b03384",
-      "bytes": 5067
+      "sha256": "511edc2bb239a4b1d9a05dc625a3fedb00e11f9f30f62dfffed3da2e14a48d58",
+      "bytes": 5479
     },
     {
       "path": "tools/scpgo_geometry_effect_audit_20261107/README.md",
-      "sha256": "f7abe4f86c10da90da4536dd7749abef3c8cf88a0d81ad81266ed10e3555a31a",
-      "bytes": 5072
+      "sha256": "7474d18c8b29db45240dd15aeca0b2317ad7af00c808f85128754d8aa5341d3f",
+      "bytes": 5083
     },
     {
       "path": "tools/scpgo_geometry_effect_audit_20261107/analyze.py",
@@ -712,8 +712,8 @@
     },
     {
       "path": "tools/scpgo_corridor02_geometry_20261107/README.md",
-      "sha256": "b2e6d29b6c7fc8bed5e68426107bbfaf761d24e38c72d852e34b4631ffb958b6",
-      "bytes": 11166
+      "sha256": "37d59cd095d0a8385476c22a87c2d9696cef83d4687e9cc22ff862d3f832cc73",
+      "bytes": 11536
     },
     {
       "path": "tools/scpgo_corridor02_geometry_20261107/run.sh",
@@ -772,8 +772,8 @@
     },
     {
       "path": "tools/scpgo_corridor02_effect_audit_20261108/README.md",
-      "sha256": "b9e941888a906485529046e12af99557a6bcd514bf214b16922854f65c679a85",
-      "bytes": 6321
+      "sha256": "115550d981383b8f75eab3cb37e7671d2d78e8a62ebf16992ea5a2326d0f1a89",
+      "bytes": 7572
     }
   ],
   "limits": [
@@ -781,5 +781,5 @@
     "Historical tool scripts retain their recorded absolute paths and run IDs; they are not fresh generic launchers.",
     "CRLF and inherited whitespace in tested C++ are retained to preserve the exact tested source bytes."
   ],
-  "latest_addition": "2026-11-08: completed Corridor02 effect audit and recorded late-tail stability, with unpublished final-node and event-time limits."
+  "latest_addition": "2026-11-08: clarify the D-drive mount alias, quantify preview-only duplication, and replace stale current progress with the completed run status."
 }

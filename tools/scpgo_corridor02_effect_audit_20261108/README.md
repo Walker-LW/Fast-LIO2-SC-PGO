@@ -62,3 +62,13 @@
 本轮说明当前配置在第二条序列也未显示明显地图改善，不能推断所有走廊、几何修正或SC-PGO普遍无效。没有前端方向雅可比、独立真实回访标签或适用的全轨迹GT，仍须区分前端误差起因、配准/接受失败和实际图约束作用。后续如需严格比较耗时、事件频率或复现差异，应统一收尾窗口，并单独报告有效输入阶段与尾段，而非立即因晚停重跑求更好结果。
 
 完整只读证据：`verified/audit.json`、`map-tail-fields.json`、`keyframe-source-check.json`、`tail-path-changes.csv`。总览为本目录`before-after.png`，三处全点图为`verified/local-all-points.png`。详细结果与图像仅保存在本机；Git保存本说明和审查源码。个人理解自检未开展。
+
+## 保存位置与重复文件核查（2026-11-08）
+
+本目录Windows路径为`D:/projects/fast-lio2-learning/tools/scpgo_corridor02_effect_audit_20261108`，Linux访问路径为`/mnt/d/projects/...`；findmnt已确认/mnt/d映射D盘，wslpath返回同一Windows路径。分析容器/out挂载此目录，查看两种路径不意味着占两份空间。
+
+独立Linux主档为`/home/lw/slam-research/results/scpgo/scpgo-corridor02-geometry-20261108-001`，约1.33GB，包含录包、关键帧、完整PCD和原量化结果。D盘本审查目录约3.6MB，不含录包/PCD。verified为新增审查证据，没有在Linux主档中再复制一套。
+
+真正跨两侧重复的输出只有before-after.png（646460字节）、pose-changes.png（127316字节）、quadrant-details.png（1055913字节），哈希完全一致，合计1829689字节。3张是为本地查看而复制的预览；本次仅核查，未删除或移动，避免使既有本地图片链接失效。
+
+WSL Git仓库同名tools目录只有3个Python和README，作为源码/说明版本归档，小于0.1MB；没有verified、PNG、录包或PCD。三份进度文档在Windows与实际Git仓库同步，当前摘要已去掉过期未开始/待恢复叙述，历史留在主复盘。

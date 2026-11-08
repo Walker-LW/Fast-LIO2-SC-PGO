@@ -44,6 +44,6 @@
 
 ## 后续范围
 
-最新建议调整见[NEXT_STEPS.md](NEXT_STEPS.md)：冻结Corridor01现有失败结果，近期准备Corridor02受控验证，同时设计前端只记录的几何方向诊断。Corridor02已只读核实2930组世界点云/位姿精确配对，但无已录原生body点云；未转换、未回放。场景弱约束是待测解释，不能由名字或警告直接确认。原有末段ICP/评分/图约束问题保留，不直接提高权重、放宽接受阈值、把5m写入生产配置或重启视觉支线。
+2026-11-08状态更新：Corridor02已从原始数据完整重跑并保存原生body，恢复关闭、导图和[严格审查](../scpgo_corridor02_effect_audit_20261108/README.md)均完成，未见可辨认收拢。原有Corridor01末段ICP/评分/图约束问题保留；下一步分别核查前端方向约束、可信回访测量与图作用。没有直接提高权重、放宽门限、把5m写入生产配置或重启视觉支线。[NEXT_STEPS.md](NEXT_STEPS.md)中的第二序列准备方案作为历史选择依据。
 
 详细结果见[verified/audit.json](verified/audit.json)，逐帧结果见`verified/*-per-keyframe.csv`。个人理解自检未开展。唯一持续复盘仍为项目主复盘文档，本目录保存本次分析证据。
