@@ -7,18 +7,18 @@
   "files": [
     {
       "path": "FAST-LIO2迭代记录与会话交接.md",
-      "sha256": "089815b4cffc35b066cb6bf31cefaa8483302931defef1f6c3eb91e1fd6fa0d9",
-      "bytes": 12686
+      "sha256": "eae8855cd52198782c172007bf8477daa5b47fbe784ec161e09d5eb58df26134",
+      "bytes": 13160
     },
     {
       "path": "FAST-LIO2问题处理与改进复盘.md",
-      "sha256": "6fc49c5d733479e932c4e9e6cf6108b9af088ace7fda21207d711b931658a455",
-      "bytes": 107212
+      "sha256": "02bb4e77c95154a5738e75be5b80e9e417752715faa84f8179c5abc9a7367531",
+      "bytes": 108774
     },
     {
       "path": "FAST-LIO2研究路线与进度.md",
-      "sha256": "3de968a0047bc7cb52bae3b6850235b6c129014b7d21957c992660271e45c894",
-      "bytes": 29711
+      "sha256": "cea92680171d0560b4601f4dc2b7c94b7788a97b04a1a988dabb828f37bfc4f7",
+      "bytes": 30118
     },
     {
       "path": "tools/scpgo_runtime/README.md",
@@ -707,13 +707,13 @@
     },
     {
       "path": "tools/scpgo_corridor02_geometry_20261107/manage.py",
-      "sha256": "8052f5efbd682fba80f83be90046492ceff91efb90f92a3ba039ac2498fe7967",
-      "bytes": 10492
+      "sha256": "330d4d7e7981c1cb830c32a78cc59bfc3202204b339e7a4211d4e97a7d95ee81",
+      "bytes": 10672
     },
     {
       "path": "tools/scpgo_corridor02_geometry_20261107/README.md",
-      "sha256": "ca0ce3e312aa1183ead96ed9ae3beefde058ea33d4bc2565c37e89650f593af6",
-      "bytes": 10438
+      "sha256": "b2e6d29b6c7fc8bed5e68426107bbfaf761d24e38c72d852e34b4631ffb958b6",
+      "bytes": 11166
     },
     {
       "path": "tools/scpgo_corridor02_geometry_20261107/run.sh",
@@ -739,6 +739,21 @@
       "path": "tools/scpgo_corridor02_geometry_20261107/test_run_id.py",
       "sha256": "a66efa20849391754a986c0a9bf130e64af699c0326421dbf11682895746b241",
       "bytes": 1988
+    },
+    {
+      "path": "tools/scpgo_corridor02_geometry_20261107/recover_finish.py",
+      "sha256": "2b9748d1a5352fb2cb7b81ddf87fd98b45a62addbaff89d5b43f4878075d0985",
+      "bytes": 4212
+    },
+    {
+      "path": "tools/scpgo_corridor02_geometry_20261107/test_node_presence.py",
+      "sha256": "edfa0cabb92786d504ae099fab514d2edffc324600c459603c6efcac065ba4e2",
+      "bytes": 1103
+    },
+    {
+      "path": "tools/scpgo_corridor02_geometry_20261107/test_recovery.py",
+      "sha256": "6a137dc4302de9c1878a15155bda09cb78ccd83ba6bd737aeb973e9c6e0ecdee",
+      "bytes": 3522
     }
   ],
   "limits": [
@@ -746,5 +761,5 @@
     "Historical tool scripts retain their recorded absolute paths and run IDs; they are not fresh generic launchers.",
     "CRLF and inherited whitespace in tested C++ are retained to preserve the exact tested source bytes."
   ],
-  "latest_addition": "2026-11-08: explicit experiment ID separated from fixed tool-version path; prepared copies recover and validate their own identity."
+  "latest_addition": "2026-11-08: fix false node-stop timeout and add non-destructive recovery for an existing completed input checkpoint."
 }

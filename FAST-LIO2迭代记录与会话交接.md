@@ -73,6 +73,8 @@ Windows D:/projects/fast-lio2-learning保存文档、参考源码和辅助工具
 
 2026-11-08执行入口纠正：工具版本目录仍为`tools/scpgo_corridor02_geometry_20261107`，本次实验ID改由`--id scpgo-corridor02-geometry-20261108-001`明确指定。准备后的脚本读取自身manifest，不能将工具目录日期也手动改为08。07/08结果目录均在本次只读检查时未创建，实际08预检通过；不代表正式运行完成。以完整流程当前命令为准。
 
+随后实际运行状态：08-001已完整接收2933 LiDAR/59655 IMU、2930组body/odom，前端已正常退出、保存304关键帧；finish因rosnode info对unknown node返回0被误判而中断。后端/录包/keep-alive在诊断时仍运行。工具已改用注册名称检查，专用recover_finish.py复用原检查记录并保留冻结副本，已交用户从B终端手动恢复；正式关闭、导图和效果分析待核实，不能标记完成或声称改善。
+
 ### 暂缓事项
 
 相机位姿参考暂停，不扩展视觉融合；Corridor02跨序列验证不再要求先把Corridor01调好；intersection_s/tunnel_s仅元数据检查完成，尚未跑SLAM。多尺度、多帧、0.2m体素和优化噪声不同时加入。近期交付是可解释、可复现的前端/后端问题案例及适用边界。

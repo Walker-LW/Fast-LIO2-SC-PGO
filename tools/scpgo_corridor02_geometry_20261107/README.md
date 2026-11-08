@@ -4,6 +4,8 @@
 
 2026-11-08路径纠正：工具目录`scpgo_corridor02_geometry_20261107`是实际存在的工具版本目录，不能随当天日期手动改名。本次实验编号单独用`--id`明确指定为`scpgo-corridor02-geometry-20261108-001`。准备后的副本自动读取冻结manifest中的编号，run.sh读取并核对自身目录名；本页命令已统一为这一组合。先前07编号入口保留兼容，但下文不混用。
 
+2026-11-08收尾纠正：已实测`rosnode info`对unknown node仍可能返回0，原stop检查因此误报前端未退出。新工具改查成功返回的`rosnode list`成员；主服务查询失败直接报错，不误当节点消失。当前已准备的08副本保留原字节，不覆盖冻结脚本。若已遇到该错误，且完整性记录存在、前端已正常退出，保持播放器并在B运行`python3 "$C2TOOLS/recover_finish.py" --id "$C2ID"`。该恢复入口复用已有input-complete记录，核验源文件/输入未变后继续保存检查和关闭，成功为`RECOVERED_CLOSED_AND_FROZEN_PASS`；不重播或再次调用原finish。额外keep-alive时间和重复事件留档，不当作独立回环。
+
 ## 实验范围与固定值
 
 原始`/datasets/Corridor02.bag`的LiDAR＋IMU→原FAST-LIO2→几何修正SC-PGO，完整1倍速。比较本次相同关键帧/点集的PGO前后，不将旧前端运行当成严格相同输入对照。旧基线2930条输出只作覆盖参考，不能强行补齐/删除成该数量。新关键帧数由本轮实际输出确定，不套用Corridor01的383帧。

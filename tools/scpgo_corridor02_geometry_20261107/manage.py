@@ -123,7 +123,10 @@ def ros(*args):
 
 
 def node_present(name):
-    return subprocess.run(ros('rosnode', 'info', name), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
+    # rosnode info may return 0 even when it prints "unknown node".
+    # Require a successful master query, then test the registered names explicitly.
+    result = subprocess.run(ros('rosnode', 'list'), capture_output=True, text=True, check=True, timeout=15)
+    return name in result.stdout.splitlines()
 
 
 def stop_node(name):
